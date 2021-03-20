@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,13 +9,18 @@
     android:background="@color/cardview_dark_background"
     tools:context=".RegisterActivity">
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
     <ImageView
         android:id="@+id/app_logo"
         android:src="@drawable/logo"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+
         />
 
     <EditText
@@ -24,6 +30,7 @@
         android:layout_below="@id/app_logo"
         android:padding="20dp"
         android:drawableLeft="@drawable/ic_osoba"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textSize="17sp"
@@ -139,6 +146,7 @@
         android:layout_below="@id/heslo2"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/buttons"
         android:padding="20dp"
@@ -148,3 +156,4 @@
         android:textSize="18sp"
         />
 </RelativeLayout>
+</ScrollView>
