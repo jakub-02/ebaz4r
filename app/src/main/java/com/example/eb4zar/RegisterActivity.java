@@ -60,15 +60,16 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-
     private void vytvorUcet() {
         String meno = menoEdit.getText().toString();
         String mail = mailEdit.getText().toString();
         String heslo = hesloEdit.getText().toString();
         String heslo2 = heslo2Edit.getText().toString();
 
-
-        if (TextUtils.isEmpty(meno)){
+        if (TextUtils.isEmpty(meno) && TextUtils.isEmpty(mail) && TextUtils.isEmpty(heslo) && TextUtils.isEmpty(heslo2)){
+            Toast.makeText(this, "Vyššie uvedené polia nesmú byť prázdne.", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(meno)){
             Toast.makeText(this, "Zadajte svoje meno!", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(mail)){
@@ -92,7 +93,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             registeracia(mail, heslo, meno);
         }
-
     }
 
     private void registeracia(String mail, String heslo, String meno){
@@ -122,7 +122,6 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 
     /*

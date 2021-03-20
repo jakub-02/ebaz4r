@@ -68,6 +68,5 @@
         android:text="Prihlásiť sa"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:enabled="false"
         />
 </RelativeLayout>
