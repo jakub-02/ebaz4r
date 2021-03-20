@@ -30,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText menoEdit, mailEdit, hesloEdit, heslo2Edit;
+    private EditText menoEdit, priezviskoEdit ,mailEdit, telefonEdit ,hesloEdit, heslo2Edit;
     private Button registerTlacdilo;
     private ProgressDialog postupReg;
 
@@ -43,10 +43,14 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         registerTlacdilo = findViewById(R.id.register);
+
         menoEdit = findViewById(R.id.meno);
+        priezviskoEdit = findViewById(R.id.priezvisko);
         mailEdit = findViewById(R.id.mail);
+        telefonEdit = findViewById(R.id.telefon);
         hesloEdit = findViewById(R.id.heslo);
         heslo2Edit = findViewById(R.id.heslo2);
+
         postupReg = new ProgressDialog(this);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -62,18 +66,27 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void vytvorUcet() {
         String meno = menoEdit.getText().toString();
+        String priezvisko = priezviskoEdit.getText().toString();
         String mail = mailEdit.getText().toString();
+        String telefon = telefonEdit.getText().toString();
         String heslo = hesloEdit.getText().toString();
         String heslo2 = heslo2Edit.getText().toString();
 
-        if (TextUtils.isEmpty(meno) && TextUtils.isEmpty(mail) && TextUtils.isEmpty(heslo) && TextUtils.isEmpty(heslo2)){
+        if (TextUtils.isEmpty(meno) && TextUtils.isEmpty(priezvisko) && TextUtils.isEmpty(mail) &&
+                TextUtils.isEmpty(telefon) && TextUtils.isEmpty(heslo) && TextUtils.isEmpty(heslo2)){
             Toast.makeText(this, "Vyššie uvedené polia nesmú byť prázdne.", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(meno)){
             Toast.makeText(this, "Zadajte svoje meno!", Toast.LENGTH_SHORT).show();
         }
+        else if (TextUtils.isEmpty(priezvisko)){
+            Toast.makeText(this, "Zadajte svoje priezvisko!", Toast.LENGTH_SHORT).show();
+        }
         else if (TextUtils.isEmpty(mail)){
             Toast.makeText(this, "Zadajte svoj email!", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(telefon)){
+            Toast.makeText(this, "Zadajte svoje telefónne číslo!", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(heslo)){
             Toast.makeText(this, "Zadajte svoje heslo!", Toast.LENGTH_SHORT).show();
@@ -91,11 +104,11 @@ public class RegisterActivity extends AppCompatActivity {
             postupReg.setCanceledOnTouchOutside(false);
             postupReg.show();
 
-            registeracia(mail, heslo, meno);
+            registeracia(mail, heslo, meno, priezvisko, telefon);
         }
     }
 
-    private void registeracia(String mail, String heslo, String meno){
+    private void registeracia(String mail, String heslo, String meno, String priezvisko, String telefon){
         mFirebaseAuth.createUserWithEmailAndPassword(mail, heslo)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
 
@@ -107,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
 
                         else{
-                            UserDetail userDetail = new UserDetail(meno);
+                            UserDetail userDetail = new UserDetail(meno, priezvisko, telefon);
                             String uid = task.getResult().getUser().getUid();
                             firebaseDatabase.getReference(uid).setValue(userDetail)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -123,60 +136,4 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    /*
-    private void overMail(final String name, final String mail, final String password)
-    {
-        final DatabaseReference RootRef;
-        RootRef = FirebaseDatabase.getInstance().getReference();
-
-        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                if (!(dataSnapshot.child("Users").child(mail).exists()))
-                {
-                    HashMap<String, Object> userdataMap = new HashMap<>();
-                    userdataMap.put("mail", mail);
-                    userdataMap.put("password", password);
-                    userdataMap.put("name", name);
-
-                    RootRef.child("Users").child(mail).updateChildren(userdataMap)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task)
-                                {
-                                    if (task.isSuccessful())
-                                    {
-                                        Toast.makeText(RegisterActivity.this, "Congratulations, your account has been created.", Toast.LENGTH_SHORT).show();
-                                        postupReg.dismiss();
-
-                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                        startActivity(intent);
-                                    }
-                                    else
-                                    {
-                                        postupReg.dismiss();
-                                        Toast.makeText(RegisterActivity.this, "Network Error: Please try again after some time...", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                }
-                else
-                {
-                    Toast.makeText(RegisterActivity.this, "This " + mail + " already exists.", Toast.LENGTH_SHORT).show();
-                    postupReg.dismiss();
-                    Toast.makeText(RegisterActivity.this, "Please try again using another phone number.", Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
 }
