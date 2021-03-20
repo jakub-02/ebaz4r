@@ -3,6 +3,7 @@ package com.example.eb4zar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -96,6 +97,12 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else if (!heslo.equals(heslo2)){
             Toast.makeText(this, "Zadané heslá sa nezhodujú!", Toast.LENGTH_SHORT).show();
+        }
+        else if (heslo.length() < 8){
+            Toast.makeText(this, "Musíš zadať minimálne 8 znakov", Toast.LENGTH_SHORT).show();
+        }
+        else if (heslo2.length() < 8){
+            Toast.makeText(this, "Musíš zadať minimálne 8 znakov", Toast.LENGTH_SHORT).show();
         }
 
         else{

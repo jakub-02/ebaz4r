@@ -109,6 +109,7 @@
         android:textColorHint="@android:color/white"
         android:inputType="textPassword"
         android:hint="Heslo"
+        android:minEms="8"
         />
 
     <EditText
@@ -128,6 +129,7 @@
         android:textColorHint="@android:color/white"
         android:inputType="textPassword"
         android:hint="Zopakuj heslo"
+        android:minEms="8"
         />
 
     <Button
