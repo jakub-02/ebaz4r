@@ -24,33 +24,13 @@ public class LoginActivity extends AppCompatActivity {
         menoEdit = findViewById(R.id.mail);
         hesloEdit = findViewById(R.id.heslo);
 
-        menoEdit.addTextChangedListener(textWatcher);
-        hesloEdit.addTextChangedListener(textWatcher);
         loginTlacidlo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, CategoriesActivity.class);
-                startActivity(intent);
+
             }
         });
     }
-    private TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        }
 
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            String m = menoEdit.getText().toString().trim();
-            String h = hesloEdit.getText().toString().trim();
-
-            loginTlacidlo.setEnabled(!m.isEmpty() && !h.isEmpty());
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
 }
