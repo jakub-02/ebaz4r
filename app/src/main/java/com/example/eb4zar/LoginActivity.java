@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Intent i = new Intent(getApplicationContext(), CategoriesActivity.class);
+                        Intent i = new Intent(getApplicationContext(), MenuActivity.class);
                         Toast.makeText(LoginActivity.this, "Prihlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
                         startActivity(i);
                     }
