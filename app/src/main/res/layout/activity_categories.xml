@@ -201,8 +201,7 @@
             android:layout_marginRight="20dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/sofa"
-            />
+            android:src="@drawable/sofa" />
 
         <ImageView
             android:id="@+id/sport"

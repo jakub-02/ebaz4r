@@ -13,7 +13,6 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     private Button regTlacidlo, joinTlacidlo;
-    private EditText menoEdit, hesloEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
