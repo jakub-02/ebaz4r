@@ -133,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                             Intent intent = new Intent(RegisterActivity.this, CategoriesActivity.class);
+                                             Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
                                              startActivity(intent);
                                         }
                                     });
