@@ -87,7 +87,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             }
 
             case (R.id.nav_profile): {
-
+                Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
+                startActivity(intent);
                 break;
             }
 
