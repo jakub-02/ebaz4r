@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.eb4zar.model.UserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -80,8 +81,15 @@ public class LoginActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        /*
+                        UserDetail userDetail = snapshot.getValue(UserDetail.class);
+                        String meno = userDetail.getMeno() + " " + userDetail.getPriezvisko();
+                         */
                         Intent i = new Intent(getApplicationContext(), MenuActivity.class);
                         Toast.makeText(LoginActivity.this, "Prihlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                        /*
+                        i.putExtra("meno", meno);
+                         */
                         startActivity(i);
                     }
 

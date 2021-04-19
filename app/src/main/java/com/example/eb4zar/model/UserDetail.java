@@ -5,6 +5,10 @@ public class UserDetail {
     private String priezvisko;
     private String telefon;
 
+    public UserDetail(){
+
+    }
+
     public UserDetail(String meno, String priezvisko, String telefon){
         this.meno = meno;
         this.priezvisko = priezvisko;

@@ -134,6 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                              Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
+                                             intent.putExtra("name", meno + " " + priezvisko);
                                              startActivity(intent);
                                         }
                                     });
