@@ -37,6 +37,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     DatabaseReference reference;
     String userID;
 
+    TextView test;
     TextView userInfo;
 
     @Override
@@ -47,8 +48,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
-        logout = findViewById(R.id.nav_logout);
-        userInfo = findViewById(R.id.user);
 
         setSupportActionBar(toolbar);
 
@@ -93,7 +92,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             }
 
             case (R.id.nav_logout): {
-
+                Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+                startActivity(intent);
                 break;
             }
     }
