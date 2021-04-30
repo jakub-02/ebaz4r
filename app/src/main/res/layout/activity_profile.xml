@@ -82,6 +82,7 @@
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:drawableLeft="@drawable/ic_menop"
+                android:drawableTint="@android:color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -98,6 +99,7 @@
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:drawableLeft="@drawable/ic_menop"
+                android:drawableTint="@android:color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -114,6 +116,7 @@
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:drawableLeft="@drawable/ic_telefonp"
+                android:drawableTint="@android:color/white"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 />
