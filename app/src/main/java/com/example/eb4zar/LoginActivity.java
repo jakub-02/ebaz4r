@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if (!task.isSuccessful()) {
-                                                Toast.makeText(LoginActivity.this, "Chyba prihlásenia, skúste to znova.",
+                                                Toast.makeText(LoginActivity.this, "Zlé heslo, alebo email, skúste to znova.",
                                                         Toast.LENGTH_LONG).show();
                                             }
                                             else {
@@ -81,7 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                         UserDetail userDetail = snapshot.getValue(UserDetail.class);
                         String meno = userDetail.getMeno() + " " + userDetail.getPriezvisko();
 
