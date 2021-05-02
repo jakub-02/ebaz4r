@@ -44,7 +44,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         registerTlacdilo = findViewById(R.id.register);
-
         menoEdit = findViewById(R.id.meno);
         priezviskoEdit = findViewById(R.id.priezvisko);
         mailEdit = findViewById(R.id.mail);
