@@ -66,7 +66,7 @@
             android:orientation="horizontal"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             >
 
             <androidx.cardview.widget.CardView
@@ -81,9 +81,19 @@
                     <ImageView
                         android:id="@+id/oblecenie"
                         android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
                         app:srcCompat="@drawable/dress" />
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="Oblečenie"
+                        android:layout_below="@+id/oblecenie"
+                        android:layout_height="30dp"
+                        android:layout_width="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -99,9 +109,19 @@
                     <ImageView
                         android:id="@+id/zvierata"
                         android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
                         app:srcCompat="@drawable/cat" />
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="Zvieratá"
+                        android:layout_below="@+id/zvierata"
+                        android:layout_height="30dp"
+                        android:layout_width="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -117,9 +137,19 @@
                     <ImageView
                         android:id="@+id/elektronika"
                         android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
                         app:srcCompat="@drawable/videogames" />
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="Elektronika"
+                        android:layout_below="@+id/elektronika"
+                        android:layout_height="30dp"
+                        android:layout_width="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -152,9 +182,19 @@
                     <ImageView
                         android:id="@+id/auta"
                         android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
                         app:srcCompat="@drawable/car" />
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="Autá"
+                        android:layout_below="@+id/auta"
+                        android:layout_height="30dp"
+                        android:layout_width="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -170,9 +210,19 @@
                     <ImageView
                         android:id="@+id/knihy"
                         android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
                         app:srcCompat="@drawable/book" />
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="Knihy"
+                        android:layout_below="@+id/knihy"
+                        android:layout_height="30dp"
+                        android:layout_width="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -189,9 +239,19 @@
                     <ImageView
                         android:id="@+id/hudba"
                         android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
                         app:srcCompat="@drawable/guitar" />
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="Hudba"
+                        android:layout_below="@+id/hudba"
+                        android:layout_height="30dp"
+                        android:layout_width="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -224,9 +284,19 @@
                     <ImageView
                         android:id="@+id/nabytok"
                         android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
                         app:srcCompat="@drawable/sofa" />
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="Nábytok"
+                        android:layout_below="@+id/nabytok"
+                        android:layout_height="30dp"
+                        android:layout_width="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -242,9 +312,19 @@
                     <ImageView
                         android:id="@+id/sport"
                         android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
                         app:srcCompat="@drawable/sport" />
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="Šport"
+                        android:layout_below="@+id/sport"
+                        android:layout_height="30dp"
+                        android:layout_width="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -261,9 +341,19 @@
                     <ImageView
                         android:id="@+id/ostatne"
                         android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
                         app:srcCompat="@drawable/suggestion" />
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:text="Ostatné"
+                        android:layout_below="@+id/ostatne"
+                        android:layout_height="30dp"
+                        android:layout_width="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
