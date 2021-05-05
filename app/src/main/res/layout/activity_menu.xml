@@ -72,14 +72,18 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
                             app:srcCompat="@drawable/logo" />
+
+                        <TextView
+                            android:textAlignment="center"
+                            android:text="Produkt"
+                            android:layout_below="@+id/bus"
+                            android:layout_height="30dp"
+                            android:layout_width="100dp"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_horizontal"
+                            android:textStyle="bold"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/textik"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
@@ -97,6 +101,15 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
                             app:srcCompat="@drawable/logo" />
+                        <TextView
+                            android:textAlignment="center"
+                            android:text="Produkt"
+                            android:layout_below="@+id/imageView3"
+                            android:layout_height="30dp"
+                            android:layout_width="100dp"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_horizontal"
+                            android:textStyle="bold"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -128,6 +141,15 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
                             app:srcCompat="@drawable/logo" />
+                        <TextView
+                            android:textAlignment="center"
+                            android:text="Produkt"
+                            android:layout_below="@+id/bus1"
+                            android:layout_height="30dp"
+                            android:layout_width="100dp"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_horizontal"
+                            android:textStyle="bold"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -146,6 +168,15 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
                             app:srcCompat="@drawable/logo" />
+                        <TextView
+                            android:textAlignment="center"
+                            android:text="Produkt"
+                            android:layout_below="@+id/train"
+                            android:layout_height="30dp"
+                            android:layout_width="100dp"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_horizontal"
+                            android:textStyle="bold"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -174,6 +205,15 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
                             app:srcCompat="@drawable/logo" />
+                        <TextView
+                            android:textAlignment="center"
+                            android:text="Produkt"
+                            android:layout_below="@+id/cycle"
+                            android:layout_height="30dp"
+                            android:layout_width="100dp"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_horizontal"
+                            android:textStyle="bold"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -192,6 +232,15 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
                             app:srcCompat="@drawable/logo" />
+                        <TextView
+                            android:textAlignment="center"
+                            android:text="Produkt"
+                            android:layout_below="@+id/airplane"
+                            android:layout_height="30dp"
+                            android:layout_width="100dp"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_horizontal"
+                            android:textStyle="bold"/>
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
