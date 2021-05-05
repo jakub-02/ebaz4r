@@ -4,15 +4,17 @@ public class UserDetail {
     private String meno;
     private String priezvisko;
     private String telefon;
+    private String mail;
 
     public UserDetail(){
 
     }
 
-    public UserDetail(String meno, String priezvisko, String telefon){
+    public UserDetail(String meno, String priezvisko, String telefon, String mail){
         this.meno = meno;
         this.priezvisko = priezvisko;
         this.telefon = telefon;
+        this.mail = mail;
     }
 
     public String getMeno() {
@@ -37,5 +39,13 @@ public class UserDetail {
 
     public void setTelefon(String telefon) {
         this.telefon = telefon;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

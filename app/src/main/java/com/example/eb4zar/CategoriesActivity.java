@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -80,6 +81,7 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             case (R.id.nav_logout): {
                 Intent intent = new Intent(CategoriesActivity.this, MainActivity.class);
                 startActivity(intent);
+                Toast.makeText(CategoriesActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
                 break;
             }
         }

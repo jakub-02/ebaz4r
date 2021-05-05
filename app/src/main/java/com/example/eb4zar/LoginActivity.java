@@ -83,10 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserDetail userDetail = snapshot.getValue(UserDetail.class);
                         String meno = userDetail.getMeno() + " " + userDetail.getPriezvisko();
-
                         Intent i = new Intent(getApplicationContext(), MenuActivity.class);
                         Toast.makeText(LoginActivity.this, "Prihlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
-
                         i.putExtra("name", meno);
                         startActivity(i);
                     }

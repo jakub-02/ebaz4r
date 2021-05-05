@@ -31,14 +31,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
-    Button logout;
 
-    FirebaseUser user;
-    DatabaseReference reference;
-    String userID;
-
-    TextView test;
-    TextView userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +87,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             case (R.id.nav_logout): {
                 Intent intent = new Intent(MenuActivity.this, MainActivity.class);
                 startActivity(intent);
+                Toast.makeText(MenuActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
                 break;
             }
     }

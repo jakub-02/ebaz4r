@@ -126,14 +126,13 @@ public class RegisterActivity extends AppCompatActivity {
                         }
 
                         else{
-                            UserDetail userDetail = new UserDetail(meno, priezvisko, telefon);
+                            UserDetail userDetail = new UserDetail(meno, priezvisko, telefon, mail);
                             String uid = task.getResult().getUser().getUid();
                             firebaseDatabase.getReference(uid).setValue(userDetail)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                              Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
-                                             intent.putExtra("name", meno + " " + priezvisko);
                                              startActivity(intent);
                                         }
                                     });
