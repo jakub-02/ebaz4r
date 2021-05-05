@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void prihlasenie(FirebaseUser mFirebaseUser) {
-        firebaseDatabase.getReference().child(mFirebaseUser.getUid())
+        firebaseDatabase.getReference().child("uzivatelia").child(mFirebaseUser.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

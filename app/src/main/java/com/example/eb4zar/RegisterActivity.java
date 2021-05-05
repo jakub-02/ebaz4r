@@ -37,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     FirebaseAuth mFirebaseAuth;
     FirebaseDatabase firebaseDatabase;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
                         else{
                             UserDetail userDetail = new UserDetail(meno, priezvisko, telefon, mail);
                             String uid = task.getResult().getUser().getUid();
-                            firebaseDatabase.getReference(uid).setValue(userDetail)
+                            firebaseDatabase.getReference("uzivatelia").child(uid).setValue(userDetail)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {

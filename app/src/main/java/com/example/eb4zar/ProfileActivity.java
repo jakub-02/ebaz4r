@@ -78,10 +78,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             emailProfil.setText(email);
         }
 
-        reference = FirebaseDatabase.getInstance().getReference().child(uid);
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
 
         nacitajData();
-
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,7 +153,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
 
     public void update(View view) {
-        reference = FirebaseDatabase.getInstance().getReference().child(uid);
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
 
         reference.child("meno").setValue(menoProfil.getText().toString());
         meno = menoProfil.getText().toString();
