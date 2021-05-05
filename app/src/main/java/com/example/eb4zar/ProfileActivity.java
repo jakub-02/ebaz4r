@@ -8,15 +8,20 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +30,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -34,28 +46,34 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     Menu menu;
     String uid, email;
     TextView emailProfil;
+    ImageView userProfil;
     Button save;
 
     EditText menoProfil, priezviskoProfil, telefonProfil;
 
-    String meno, priezvisko, telefon;
+    String meno, priezvisko, telefon, downloadImageUrl;
 
     DatabaseReference reference;
+    StorageReference fotkyReference;
+
+    Uri ImageUri;
+
+    private static final int GalleryPick = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        drawerLayout=findViewById(R.id.drawer_layout1);
-        navigationView=findViewById(R.id.nav_view1);
-        toolbar=findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout1);
+        navigationView = findViewById(R.id.nav_view1);
+        toolbar = findViewById(R.id.toolbar);
 
         menoProfil = findViewById(R.id.menoProfil);
         priezviskoProfil = findViewById(R.id.priezviskoProfil);
         telefonProfil = findViewById(R.id.telefonProfil);
         emailProfil = findViewById(R.id.emailProfil);
-
+        userProfil = findViewById(R.id.userProfil);
         save = findViewById(R.id.save);
 
         setSupportActionBar(toolbar);
@@ -89,6 +107,33 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             }
         });
 
+        userProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                OtvorGaleriu();
+            }
+        });
+
+    }
+
+    private void OtvorGaleriu() {
+        Intent galleryIntent = new Intent();
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, GalleryPick);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==GalleryPick  &&  resultCode==RESULT_OK  &&  data!=null)
+        {
+            ImageUri = data.getData();
+            userProfil.setImageURI(ImageUri);
+        }
     }
 
     @Override
@@ -164,7 +209,71 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         reference.child("telefon").setValue(telefonProfil.getText().toString());
         telefon = telefonProfil.getText().toString();
 
+        /*
+        ulozFotkuStorage();*/
+
         Toast.makeText(this, "Úpravy boli prijaté", Toast.LENGTH_LONG).show();
 
     }
+
+
+    /*
+    private void ulozFotkuStorage()
+    {
+        final StorageReference filePath = fotkyReference.child(ImageUri.getLastPathSegment() + ".jpg");
+
+        final UploadTask uploadTask = filePath.putFile(ImageUri);
+
+
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e)
+            {
+                String message = e.toString();
+                Toast.makeText(ProfileActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+            {
+                Toast.makeText(ProfileActivity.this, "Product Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
+
+                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception
+                    {
+                        if (!task.isSuccessful())
+                        {
+                            throw task.getException();
+                        }
+
+                        downloadImageUrl = filePath.getDownloadUrl().toString();
+                        return filePath.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            downloadImageUrl = task.getResult().toString();
+
+                            Toast.makeText(ProfileActivity.this, "got the Product image Url Successfully...", Toast.LENGTH_SHORT).show();
+
+                            ulozFotkuDatabaza();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+
+
+    private void ulozFotkuDatabaza()
+    {
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+
+        reference.child("fotka").setValue(downloadImageUrl);
+    }*/
 }
