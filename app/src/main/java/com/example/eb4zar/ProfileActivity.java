@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -37,6 +38,7 @@ import java.util.HashMap;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.squareup.picasso.Picasso;
 
 public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -92,13 +94,15 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         if (user != null) {
             uid = user.getUid();
             email = user.getEmail();
-
             emailProfil.setText(email);
         }
 
         reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+        fotkyReference = FirebaseStorage.getInstance().getReference().child("profiloveObrazky");
 
         nacitajData();
+
+        nacitajFotku();
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +119,24 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             }
         });
 
+    }
+
+    private void nacitajFotku() {
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivateliaFotky").child(uid);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String link = snapshot.child("fotka").getValue().toString();
+                if (link != null) {
+                    Picasso.get().load(link).into(userProfil);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void OtvorGaleriu() {
@@ -209,21 +231,16 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         reference.child("telefon").setValue(telefonProfil.getText().toString());
         telefon = telefonProfil.getText().toString();
 
-        /*
-        ulozFotkuStorage();*/
+        ulozFotkuStorage();
 
         Toast.makeText(this, "Úpravy boli prijaté", Toast.LENGTH_LONG).show();
 
     }
 
-
-    /*
     private void ulozFotkuStorage()
     {
         final StorageReference filePath = fotkyReference.child(ImageUri.getLastPathSegment() + ".jpg");
-
         final UploadTask uploadTask = filePath.putFile(ImageUri);
-
 
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
@@ -236,8 +253,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
             {
-                Toast.makeText(ProfileActivity.this, "Product Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
-
                 Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception
@@ -257,23 +272,12 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                         if (task.isSuccessful())
                         {
                             downloadImageUrl = task.getResult().toString();
-
-                            Toast.makeText(ProfileActivity.this, "got the Product image Url Successfully...", Toast.LENGTH_SHORT).show();
-
-                            ulozFotkuDatabaza();
+                            reference = FirebaseDatabase.getInstance().getReference().child("uzivateliaFotky").child(uid);
+                            reference.child("fotka").setValue(downloadImageUrl);
                         }
                     }
                 });
             }
         });
     }
-
-
-
-    private void ulozFotkuDatabaza()
-    {
-        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
-
-        reference.child("fotka").setValue(downloadImageUrl);
-    }*/
 }
