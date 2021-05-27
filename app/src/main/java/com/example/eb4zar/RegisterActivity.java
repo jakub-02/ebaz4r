@@ -133,8 +133,10 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                             Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
-                                             startActivity(intent);
+                                            reference = FirebaseDatabase.getInstance().getReference().child("uzivateliaFotky").child(uid);
+                                            reference.child("fotka").setValue("default");
+                                            Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
+                                            startActivity(intent);
                                         }
                                     });
                             Toast.makeText(RegisterActivity.this, "Váš účet bol vytvorený.", Toast.LENGTH_SHORT).show();
