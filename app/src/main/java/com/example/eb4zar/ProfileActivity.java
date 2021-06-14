@@ -79,6 +79,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         save = findViewById(R.id.save);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle=new

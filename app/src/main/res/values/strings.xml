@@ -3,4 +3,16 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string-array name="kategorie">
+        <item>Oblečenie</item>
+        <item>Zvieratá</item>
+        <item>Elektronika</item>
+        <item>Autá</item>
+        <item>Knihy</item>
+        <item>Hudba</item>
+        <item>Nábytok</item>
+        <item>Šport</item>
+        <item>Ostatné</item>
+    </string-array>>
 </resources>
