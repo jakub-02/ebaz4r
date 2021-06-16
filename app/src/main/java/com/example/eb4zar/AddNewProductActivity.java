@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -85,7 +86,7 @@ public class AddNewProductActivity extends AppCompatActivity implements AdapterV
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update(v);
+                skontrolujPrazndePolia();
             }
         });
 
@@ -113,7 +114,30 @@ public class AddNewProductActivity extends AppCompatActivity implements AdapterV
         }
     }
 
-    public void update(View view) {
+    private void skontrolujPrazndePolia(){
+        String nazov = nazovText.getText().toString();
+        String popis = popisText.getText().toString();
+        String cena = cenaText.getText().toString();
+
+        if(TextUtils.isEmpty(nazov) && TextUtils.isEmpty(popis) && TextUtils.isEmpty(cena)){
+            Toast.makeText(this, "Vyššie uvedené polia nesmú byť prázdne.", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(nazov)){
+            Toast.makeText(this, "Zadajte názov inzerátu!", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(popis)){
+            Toast.makeText(this, "Zadajte popis inzerátu!", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(cena)){
+            Toast.makeText(this, "Zadajte cenu inzerátu!", Toast.LENGTH_SHORT).show();
+        }
+
+        else{
+            update();
+        }
+    }
+
+    public void update() {
         Calendar calendar = Calendar.getInstance();
 
         SimpleDateFormat currentDate = new SimpleDateFormat("MMMddyyyy");
