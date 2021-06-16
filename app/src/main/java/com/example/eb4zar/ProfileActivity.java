@@ -129,7 +129,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String link = snapshot.child("fotka").getValue().toString();
                 if (link.equals("default")) {
-                    System.out.println("fotka neni");
+
                 }
                 else{
                     Picasso.get().load(link).into(userProfil);
