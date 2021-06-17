@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".MenuActivity"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:openDrawer="start"
+    android:background="@color/cardview_dark_background">
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
@@ -46,205 +47,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 app:srcCompat="@drawable/logo" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="0dp"
-                android:layout_height="175dp"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView">
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                android:id="@+id/recycler_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                >
+            </androidx.recyclerview.widget.RecyclerView>
 
-                        <ImageView
-                            android:id="@+id/bus"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/logo" />
 
-                        <TextView
-                            android:textAlignment="center"
-                            android:text="Produkt"
-                            android:layout_below="@+id/bus"
-                            android:layout_height="30dp"
-                            android:layout_width="100dp"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textStyle="bold"/>
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/imageView3"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/logo" />
-                        <TextView
-                            android:textAlignment="center"
-                            android:text="Produkt"
-                            android:layout_below="@+id/imageView3"
-                            android:layout_height="30dp"
-                            android:layout_width="100dp"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textStyle="bold"/>
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="0dp"
-                android:layout_height="175dp"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/bus1"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/logo" />
-                        <TextView
-                            android:textAlignment="center"
-                            android:text="Produkt"
-                            android:layout_below="@+id/bus1"
-                            android:layout_height="30dp"
-                            android:layout_width="100dp"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textStyle="bold"/>
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/train"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/logo" />
-                        <TextView
-                            android:textAlignment="center"
-                            android:text="Produkt"
-                            android:layout_below="@+id/train"
-                            android:layout_height="30dp"
-                            android:layout_width="100dp"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textStyle="bold"/>
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="175dp"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/cycle"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/logo" />
-                        <TextView
-                            android:textAlignment="center"
-                            android:text="Produkt"
-                            android:layout_below="@+id/cycle"
-                            android:layout_height="30dp"
-                            android:layout_width="100dp"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textStyle="bold"/>
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/airplane"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            app:srcCompat="@drawable/logo" />
-                        <TextView
-                            android:textAlignment="center"
-                            android:text="Produkt"
-                            android:layout_below="@+id/airplane"
-                            android:layout_height="30dp"
-                            android:layout_width="100dp"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textStyle="bold"/>
-
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>

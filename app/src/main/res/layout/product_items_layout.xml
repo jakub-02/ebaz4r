@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="20dp"
+    app:cardElevation="15dp">
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/nazovInzeratu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nazov Produktu"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/fotkaProduktu"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="2dp"
+            android:layout_below="@id/nazovInzeratu"
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/cenaInzeratu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cena Produktu"
+            android:textAlignment="center"
+            android:textSize="15dp"
+            android:layout_below="@id/fotkaProduktu"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
