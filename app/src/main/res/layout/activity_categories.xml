@@ -37,32 +37,17 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/slogan"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="Vyberte si kategóriu"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white"/>
 
         <LinearLayout
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slogan"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
             android:id="@+id/prvaRada"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/slogan"
             android:orientation="horizontal"
             android:layout_centerHorizontal="true"
             android:gravity="center"
@@ -93,7 +78,9 @@
                         android:layout_width="100dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -121,7 +108,9 @@
                         android:layout_width="100dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -149,7 +138,9 @@
                         android:layout_width="100dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -163,11 +154,10 @@
             android:id="@+id/druhaRada"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/slogan"
             android:orientation="horizontal"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             >
 
             <androidx.cardview.widget.CardView
@@ -194,7 +184,9 @@
                         android:layout_width="100dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -222,7 +214,9 @@
                         android:layout_width="100dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -251,7 +245,9 @@
                         android:layout_width="100dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -265,11 +261,10 @@
             android:id="@+id/tretiaRada"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/slogan"
             android:orientation="horizontal"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             >
 
             <androidx.cardview.widget.CardView
@@ -296,7 +291,9 @@
                         android:layout_width="100dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -324,7 +321,9 @@
                         android:layout_width="100dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -353,7 +352,9 @@
                         android:layout_width="100dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 

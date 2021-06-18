@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
+    tools:context=".ProductActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cardview_dark_background"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        >
+
+        <TextView
+            android:id="@+id/nazovInzeratu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nazov Produktu"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            tools:ignore="MissingConstraints">
+
+        </TextView>
+
+        <ImageView
+            app:layout_constraintTop_toBottomOf="@+id/nazovInzeratu"
+            android:id="@+id/obrazokDetailProduktu"
+            android:src="@drawable/logo"
+            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/popisInzeratu"
+            app:layout_constraintTop_toBottomOf="@+id/obrazokDetailProduktu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Popis produktu"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints">
+        </TextView>
+
+        <TextView
+            android:id="@+id/emailInzerat"
+            app:layout_constraintTop_toBottomOf="@+id/popisInzeratu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="email"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints">
+        </TextView>
+
+        <TextView
+            android:id="@+id/telefonInzerat"
+            app:layout_constraintTop_toBottomOf="@+id/emailInzerat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="telefon"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints">
+        </TextView>
+
+        <TextView
+            android:id="@+id/cenaInzerat"
+            app:layout_constraintTop_toBottomOf="@+id/telefonInzerat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="cena"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            tools:ignore="MissingConstraints">
+        </TextView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

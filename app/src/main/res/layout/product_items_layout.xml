@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/produkt"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,16 +20,18 @@
         android:layout_height="wrap_content"
         android:text="Nazov Produktu"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:gravity="center_horizontal"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"/>
 
         <ImageView
             android:id="@+id/fotkaProduktu"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:layout_marginTop="2dp"
+            android:src="@drawable/logo"
+            android:layout_margin="10dp"
             android:layout_below="@id/nazovInzeratu"
             >
         </ImageView>
@@ -38,11 +41,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cena Produktu"
-            android:textAlignment="center"
-            android:textSize="15dp"
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:textAlignment="textEnd"
             android:layout_below="@id/fotkaProduktu"
-            android:gravity="center_horizontal"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:gravity="end" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

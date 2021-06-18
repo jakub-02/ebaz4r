@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
+    ImageView auta, elektronika, hudba, knihy, nabytok, oblecenie, ostatne, sport, zvierata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +33,18 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        auta = findViewById(R.id.auta);
+        elektronika = findViewById(R.id.elektronika);
+        hudba = findViewById(R.id.hudba);
+        knihy = findViewById(R.id.knihy);
+        nabytok = findViewById(R.id.nabytok);
+        oblecenie = findViewById(R.id.oblecenie);
+        ostatne = findViewById(R.id.ostatne);
+        sport = findViewById(R.id.sport);
+        zvierata = findViewById(R.id.zvierata);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle("Vyberte si kategóriu");
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -43,6 +55,79 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
         navigationView.setNavigationItemSelectedListener(this);
 
         menu = navigationView.getMenu();
+
+        auta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(CategoriesActivity.this, KategoriaAuta.class);
+                startActivity(intent);
+            }
+        });
+        oblecenie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(CategoriesActivity.this, KategoriaOblecenie.class);
+                startActivity(intent);
+            }
+        });
+        elektronika.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(CategoriesActivity.this, KategoriaElektronika.class);
+                startActivity(intent);
+            }
+        });
+        sport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(CategoriesActivity.this, KategoriaSport.class);
+                startActivity(intent);
+            }
+        });
+        knihy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(CategoriesActivity.this, KategoriaKnihy.class);
+                startActivity(intent);
+            }
+        });
+        hudba.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(CategoriesActivity.this, KategoriaHudba.class);
+                startActivity(intent);
+            }
+        });
+        ostatne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(CategoriesActivity.this, KategoriaOstatne.class);
+                startActivity(intent);
+            }
+        });
+        zvierata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(CategoriesActivity.this, KategoriaZvierata.class);
+                startActivity(intent);
+            }
+        });
+        nabytok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(CategoriesActivity.this, KategoriaNabytok.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

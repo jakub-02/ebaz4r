@@ -3,11 +3,12 @@ package com.example.eb4zar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,10 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.eb4zar.ViewHolder.ProductViewHolder;
 import com.example.eb4zar.model.ProductDetail;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -28,9 +25,10 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
-public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class KategoriaZvierata extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -39,21 +37,20 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-
-        ProductsRef = FirebaseDatabase.getInstance().getReference().child("produkty");
+        setContentView(R.layout.activity_kategoria_oblecenie);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("produkty");
+
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Vitajte v aplikácii Ebazar");
+        getSupportActionBar().setTitle("Zvieratá");
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -75,9 +72,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     {
         super.onStart();
 
+        Query query = ProductsRef.orderByChild("kategoria").equalTo("Zvieratá");
+
         FirebaseRecyclerOptions<ProductDetail> options =
                 new FirebaseRecyclerOptions.Builder<ProductDetail>()
-                        .setQuery(ProductsRef, ProductDetail.class)
+                        .setQuery(query, ProductDetail.class)
                         .build();
 
         FirebaseRecyclerAdapter<ProductDetail, ProductViewHolder> adapter =
@@ -85,9 +84,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull ProductDetail model)
                     {
-                        holder.txtNazovInzeratu.setText(model.getNazov());
-                        holder.txtCenaInzeratu.setText(model.getCena() + "€");
-                        Picasso.get().load(model.getFotka()).into(holder.imageView);
+                        if(model.getKategoria().equals("Zvieratá")){
+                            holder.txtNazovInzeratu.setText(model.getNazov());
+                            holder.txtCenaInzeratu.setText(model.getCena() + "€");
+                            Picasso.get().load(model.getFotka()).into(holder.imageView);
+                        }
                     }
 
                     @NonNull
@@ -104,24 +105,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.spodne_menu, menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.addButton:
-                Intent intent = new Intent(MenuActivity.this, AddNewProductActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -134,28 +117,31 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-
-            case (R.id.nav_home): break;
+            case (R.id.nav_home):{
+                Intent intent = new Intent(KategoriaZvierata.this, MenuActivity.class);
+                startActivity(intent);
+                break;
+            }
 
             case (R.id.nav_categories):{
-                Intent intent = new Intent(MenuActivity.this, CategoriesActivity.class);
+                Intent intent = new Intent(KategoriaZvierata.this, CategoriesActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(KategoriaZvierata.this, ProfileActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_logout): {
-                Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+                Intent intent = new Intent(KategoriaZvierata.this, MainActivity.class);
                 startActivity(intent);
-                Toast.makeText(MenuActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(KategoriaZvierata.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
                 break;
             }
-    }
-    drawerLayout.closeDrawer(GravityCompat.START); return true;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START); return true;
     }
 }

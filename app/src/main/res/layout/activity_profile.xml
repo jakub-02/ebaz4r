@@ -37,7 +37,8 @@
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:titleTextColor="@color/white"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_marginTop="15dp"

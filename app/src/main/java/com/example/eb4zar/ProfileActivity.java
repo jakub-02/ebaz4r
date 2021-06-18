@@ -79,7 +79,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         save = findViewById(R.id.save);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle("Upravte si svoj profil");
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle=new

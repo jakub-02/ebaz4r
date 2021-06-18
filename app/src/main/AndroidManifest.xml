@@ -9,7 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddNewProductActivity"></activity>
+        <activity android:name=".ProductActivity"></activity>
+        <activity android:name=".KategoriaOstatne" />
+        <activity android:name=".KategoriaAuta" />
+        <activity android:name=".KategoriaNabytok" />
+        <activity android:name=".KategoriaHudba" />
+        <activity android:name=".KategoriaSport" />
+        <activity android:name=".KategoriaKnihy" />
+        <activity android:name=".KategoriaZvierata" />
+        <activity android:name=".KategoriaOblecenie" />
+        <activity android:name=".KategoriaElektronika" />
+        <activity android:name=".AddNewProductActivity" />
         <activity android:name=".ProfileActivity" />
         <activity
             android:name=".MenuActivity"
