@@ -74,7 +74,6 @@ public class KategoriaElektronika extends AppCompatActivity implements Navigatio
 
         Query query = ProductsRef.orderByChild("kategoria").equalTo("Elektronika");
 
-
         FirebaseRecyclerOptions<ProductDetail> options =
                 new FirebaseRecyclerOptions.Builder<ProductDetail>()
                         .setQuery(query, ProductDetail.class)
@@ -89,6 +88,16 @@ public class KategoriaElektronika extends AppCompatActivity implements Navigatio
                             holder.txtNazovInzeratu.setText(model.getNazov());
                             holder.txtCenaInzeratu.setText(model.getCena() + "€");
                             Picasso.get().load(model.getFotka()).into(holder.imageView);
+
+                            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String zvolenyProdukt = getRef(position).getKey();
+                                    Intent i = new Intent(KategoriaElektronika.this, ProductDetailActivity.class);
+                                    i.putExtra("zvolenyProdukt", zvolenyProdukt);
+                                    startActivity(i);
+                                }
+                            });
                         }
                     }
 

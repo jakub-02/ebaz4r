@@ -5,17 +5,16 @@
     android:id="@+id/drawer_layout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity"
     android:fitsSystemWindows="true"
+    tools:context=".ProfileActivity"
     tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/nav_view1"
-        app:menu="@menu/main_menu"
         android:layout_gravity="start"
-        />
+        app:menu="@menu/main_menu" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,19 +31,19 @@
                 android:id="@+id/toolbar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
-                android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:titleTextColor="@color/white"/>
+                app:titleTextColor="@color/white" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_marginTop="15dp"
                 android:id="@+id/userProfil"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
+                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -54,84 +53,90 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/userProfil"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/userProfil">
 
                 <TextView
                     android:id="@+id/emailProfil"
-                    android:layout_height="50dp"
-                    android:textSize="25sp"
                     android:layout_width="match_parent"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold"
+                    android:layout_height="50dp"
+                    android:gravity="center"
                     android:text="email"
-                    android:gravity="center"/>
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/inzeraty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/buttons"
-                android:padding="20dp"
-                android:text="Moje inzeráty"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                <EditText
+                    android:id="@+id/menoProfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/input"
+                    android:drawableLeft="@drawable/ic_menop"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@android:color/white"
+                    android:inputType="text"
+                    android:padding="20dp"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/menoProfil"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/input"
-                android:inputType="text"
-                android:padding="20dp"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
-                android:drawableLeft="@drawable/ic_menop"
-                android:drawableTint="@android:color/white"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/priezviskoProfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/input"
+                    android:drawableLeft="@drawable/ic_menop"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@android:color/white"
+                    android:inputType="text"
+                    android:padding="20dp"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/priezviskoProfil"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/input"
-                android:inputType="text"
-                android:padding="20dp"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
-                android:drawableLeft="@drawable/ic_menop"
-                android:drawableTint="@android:color/white"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/telefonProfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/input"
+                    android:drawableLeft="@drawable/ic_telefonp"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@android:color/white"
+                    android:inputType="numberDecimal"
+                    android:padding="20dp"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/telefonProfil"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/input"
-                android:inputType="numberDecimal"
-                android:padding="20dp"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white"
-                android:drawableLeft="@drawable/ic_telefonp"
-                android:drawableTint="@android:color/white"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                />
+                <EditText
+                    android:id="@+id/adresaProfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/input"
+                    android:drawableLeft="@drawable/ic_home"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@android:color/white"
+                    android:inputType="text"
+                    android:padding="20dp"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:hint="Adresa"/>
 
                 <Button
                     android:id="@+id/save"
@@ -147,8 +152,8 @@
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 

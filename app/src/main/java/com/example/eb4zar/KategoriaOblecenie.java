@@ -88,6 +88,16 @@ public class KategoriaOblecenie extends AppCompatActivity implements NavigationV
                             holder.txtNazovInzeratu.setText(model.getNazov());
                             holder.txtCenaInzeratu.setText(model.getCena() + "€");
                             Picasso.get().load(model.getFotka()).into(holder.imageView);
+
+                            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String zvolenyProdukt = getRef(position).getKey();
+                                    Intent i = new Intent(KategoriaOblecenie.this, ProductDetailActivity.class);
+                                    i.putExtra("zvolenyProdukt", zvolenyProdukt);
+                                    startActivity(i);
+                                }
+                            });
                         }
                     }
 
