@@ -1,25 +1,9 @@
 # ebaz4r
 
-Zdar! 
+Čo treba dokončiť...
 
-Napisem tu co by sme chceli pridat a za vsetkym bude X-ko ked to nie je hotove a kvacka abo daco ked je,
-dufam ze to bude vidno ked otvoris AndroidStudio...
-
-1. Fungovanie log-out tlacidla
-   - odhlasenie ako by to malo spravne fungovat
-   - malo by nas to hodit naspat na login
-   - X
-
-2. ProfileActivity 
-   - tam si mozeme zmenit meno, telofon, casom aj profilovy obrazok a adresu alebo nieco na ten sposob
-   - malo by to obsahova nejake textViews na styl registru a Hamburger ako MenuActivity
-   - X
-
-3. Dizajn MenuActivity
-   - rozlozenie co tam teraz mame je celkom fajn len treba doladit farby
-   - X
-
-4. Pridavanie produktov a praca s nimi
-   - tu bude celkom dost prace kedze nam bude treba aktivity kolo toho a pracu s databazou,
-     ale to potom dohodne ze co a jak
-   - Z
+1. Moje inzeráty - stránka na ktorej budú zobrazené všetky inzeráty užívateľa pod sebou s dvoma tlačítkami (úprava, vymazanie)
+2. Verejný profil užívateľa - na tejto stránke budeme vidieť fotku, meno, mail, číslo, adresu, všetky inzeráty daného užívateľa a v budúcnosti aj možnosť ohodnotiť predajcu, pozrieť si hodnotenia iných užívateľov na tohto predajcu
+3. Vyhľadávanie inzerátov - 
+4. Dizajn úvodnej stránky - 
+                   
