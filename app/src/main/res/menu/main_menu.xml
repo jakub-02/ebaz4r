@@ -7,14 +7,29 @@
             android:title="Domov" />
 
         <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search"
+            android:title="Vyhľadať inzerát" />
+
+        <item
             android:id="@+id/nav_categories"
             android:icon="@drawable/ic_categories"
             android:title="Kategórie" />
 
         <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_add"
+            android:title="Pridať inzerát" />
+
+        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_osoba"
             android:title="Profil" />
+
+        <item
+            android:id="@+id/nav_myProducts"
+            android:icon="@drawable/ic_myproducts"
+            android:title="Moje inzeráty" />
 
         <item
             android:id="@+id/nav_logout"

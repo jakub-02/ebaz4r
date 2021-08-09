@@ -73,7 +73,6 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
 
         nacitajFotku();
         nacitajData();
-
     }
 
     @Override
