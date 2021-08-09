@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.eb4zar.model.ProductDetail;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,14 +33,14 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
     Menu menu;
 
     ImageView imageView;
-    TextView productName, productDesc, productPrice, sellerMail, sellerPhone;
+    TextView productName, productDesc, productPrice, sellerMail, sellerPhone, sellerName;
 
     DatabaseReference reference, sellerReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_detail2);
+        setContentView(R.layout.activity_product_detail);
 
         zvolenyProdukt = getIntent().getExtras().get("zvolenyProdukt").toString();
 
@@ -54,6 +53,7 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
         productPrice = findViewById(R.id.productPrice);
         sellerMail = findViewById(R.id.sellerMail);
         sellerPhone = findViewById(R.id.sellerPhone);
+        sellerName = findViewById(R.id.sellerName);
 
         drawerLayout = findViewById(R.id.drawer_layout1);
         navigationView = findViewById(R.id.nav_view1);
@@ -155,9 +155,12 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String mail = snapshot.child("mail").getValue().toString();
                         String phone = snapshot.child("telefon").getValue().toString();
+                        String name = snapshot.child("meno").getValue().toString();
+                        String surname = snapshot.child("priezvisko").getValue().toString();
 
                         sellerMail.setText(mail);
                         sellerPhone.setText(phone);
+                        sellerName.setText(name + " " + surname);
                     }
 
                     @Override
