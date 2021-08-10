@@ -187,7 +187,25 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 break;
             }
 
+            case (R.id.nav_search):{
+                Intent intent = new Intent(ProfileActivity.this, SearchProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_add):{
+                Intent intent = new Intent(ProfileActivity.this, AddNewProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
             case (R.id.nav_profile): {
+                break;
+            }
+
+            case (R.id.nav_myProducts):{
+                Intent intent = new Intent(ProfileActivity.this, MyProductsActivity.class);
+                startActivity(intent);
                 break;
             }
 

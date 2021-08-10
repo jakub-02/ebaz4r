@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
-public class KategoriaElektronika extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class SelectedCategoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -38,10 +38,12 @@ public class KategoriaElektronika extends AppCompatActivity implements Navigatio
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
 
+    String selectedCategory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kategoria_oblecenie);
+        setContentView(R.layout.activity_selected_category);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -50,7 +52,9 @@ public class KategoriaElektronika extends AppCompatActivity implements Navigatio
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("produkty");
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Elektronika");
+
+        selectedCategory = getIntent().getExtras().get("kategoria").toString();
+        getSupportActionBar().setTitle(selectedCategory);
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -72,7 +76,7 @@ public class KategoriaElektronika extends AppCompatActivity implements Navigatio
     {
         super.onStart();
 
-        Query query = ProductsRef.orderByChild("kategoria").equalTo("Elektronika");
+        Query query = ProductsRef.orderByChild("kategoria").equalTo(selectedCategory);
 
         FirebaseRecyclerOptions<ProductDetail> options =
                 new FirebaseRecyclerOptions.Builder<ProductDetail>()
@@ -84,7 +88,7 @@ public class KategoriaElektronika extends AppCompatActivity implements Navigatio
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull ProductDetail model)
                     {
-                        if(model.getKategoria().equals("Elektronika")){
+                        if(model.getKategoria().equals(selectedCategory)){
                             holder.txtNazovInzeratu.setText(model.getNazov());
                             holder.txtCenaInzeratu.setText(model.getCena() + "€");
                             Picasso.get().load(model.getFotka()).into(holder.imageView);
@@ -93,7 +97,7 @@ public class KategoriaElektronika extends AppCompatActivity implements Navigatio
                                 @Override
                                 public void onClick(View v) {
                                     String zvolenyProdukt = getRef(position).getKey();
-                                    Intent i = new Intent(KategoriaElektronika.this, ProductDetailActivity.class);
+                                    Intent i = new Intent(SelectedCategoryActivity.this, ProductDetailActivity.class);
                                     i.putExtra("zvolenyProdukt", zvolenyProdukt);
                                     startActivity(i);
                                 }
@@ -127,28 +131,46 @@ public class KategoriaElektronika extends AppCompatActivity implements Navigatio
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case (R.id.nav_home):{
-                Intent intent = new Intent(KategoriaElektronika.this, MenuActivity.class);
+            case (R.id.nav_home): {
+                Intent intent = new Intent(SelectedCategoryActivity.this, MenuActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_categories):{
-                Intent intent = new Intent(KategoriaElektronika.this, CategoriesActivity.class);
+                Intent intent = new Intent(SelectedCategoryActivity.this, CategoriesActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_search):{
+                Intent intent = new Intent(SelectedCategoryActivity.this, SearchProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_add):{
+                Intent intent = new Intent(SelectedCategoryActivity.this, AddNewProductActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(KategoriaElektronika.this, ProfileActivity.class);
+                Intent intent = new Intent(SelectedCategoryActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_myProducts):{
+                Intent intent = new Intent(SelectedCategoryActivity.this, MyProductsActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_logout): {
-                Intent intent = new Intent(KategoriaElektronika.this, MainActivity.class);
+                Intent intent = new Intent(SelectedCategoryActivity.this, MainActivity.class);
                 startActivity(intent);
-                Toast.makeText(KategoriaElektronika.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectedCategoryActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
                 break;
             }
         }

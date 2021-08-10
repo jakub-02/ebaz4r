@@ -45,7 +45,7 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kategoria_oblecenie);
+        setContentView(R.layout.activity_my_products);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -59,7 +59,7 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("produkty");
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Moje Produkty");
+        getSupportActionBar().setTitle("Moje inzeráty");
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -134,7 +134,7 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case (R.id.nav_home):{
+            case (R.id.nav_home): {
                 Intent intent = new Intent(MyProductsActivity.this, MenuActivity.class);
                 startActivity(intent);
                 break;
@@ -146,9 +146,25 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
                 break;
             }
 
+            case (R.id.nav_search):{
+                Intent intent = new Intent(MyProductsActivity.this, SearchProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_add):{
+                Intent intent = new Intent(MyProductsActivity.this, AddNewProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
             case (R.id.nav_profile): {
                 Intent intent = new Intent(MyProductsActivity.this, ProfileActivity.class);
                 startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_myProducts):{
                 break;
             }
 

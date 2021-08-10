@@ -39,7 +39,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,24 +113,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.spodne_menu, menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.addButton:
-                Intent intent = new Intent(MenuActivity.this, AddNewProductActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -147,20 +128,32 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
             case (R.id.nav_home): break;
 
-            case (R.id.nav_myProducts):{
-                Intent intent = new Intent(MenuActivity.this, MyProductsActivity.class);
-                startActivity(intent);
-                break;
-            }
-
             case (R.id.nav_categories):{
                 Intent intent = new Intent(MenuActivity.this, CategoriesActivity.class);
                 startActivity(intent);
                 break;
             }
 
+            case (R.id.nav_search):{
+                Intent intent = new Intent(MenuActivity.this, SearchProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_add):{
+                Intent intent = new Intent(MenuActivity.this, AddNewProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
             case (R.id.nav_profile): {
                 Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_myProducts):{
+                Intent intent = new Intent(MenuActivity.this, MyProductsActivity.class);
                 startActivity(intent);
                 break;
             }

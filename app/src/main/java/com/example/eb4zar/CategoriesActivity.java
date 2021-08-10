@@ -60,7 +60,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(CategoriesActivity.this, KategoriaAuta.class);
+                Intent intent = new Intent(CategoriesActivity.this, SelectedCategoryActivity.class);
+                intent.putExtra("kategoria", "Autá");
                 startActivity(intent);
             }
         });
@@ -68,7 +69,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(CategoriesActivity.this, KategoriaOblecenie.class);
+                Intent intent = new Intent(CategoriesActivity.this, SelectedCategoryActivity.class);
+                intent.putExtra("kategoria", "Oblečenie");
                 startActivity(intent);
             }
         });
@@ -76,7 +78,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(CategoriesActivity.this, KategoriaElektronika.class);
+                Intent intent = new Intent(CategoriesActivity.this, SelectedCategoryActivity.class);
+                intent.putExtra("kategoria", "Elektronika");
                 startActivity(intent);
             }
         });
@@ -84,7 +87,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(CategoriesActivity.this, KategoriaSport.class);
+                Intent intent = new Intent(CategoriesActivity.this, SelectedCategoryActivity.class);
+                intent.putExtra("kategoria", "Šport");
                 startActivity(intent);
             }
         });
@@ -92,7 +96,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(CategoriesActivity.this, KategoriaKnihy.class);
+                Intent intent = new Intent(CategoriesActivity.this, SelectedCategoryActivity.class);
+                intent.putExtra("kategoria", "Knihy");
                 startActivity(intent);
             }
         });
@@ -100,7 +105,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(CategoriesActivity.this, KategoriaHudba.class);
+                Intent intent = new Intent(CategoriesActivity.this, SelectedCategoryActivity.class);
+                intent.putExtra("kategoria", "Hudba");
                 startActivity(intent);
             }
         });
@@ -108,7 +114,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(CategoriesActivity.this, KategoriaOstatne.class);
+                Intent intent = new Intent(CategoriesActivity.this, SelectedCategoryActivity.class);
+                intent.putExtra("kategoria", "Ostatné");
                 startActivity(intent);
             }
         });
@@ -116,7 +123,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(CategoriesActivity.this, KategoriaZvierata.class);
+                Intent intent = new Intent(CategoriesActivity.this, SelectedCategoryActivity.class);
+                intent.putExtra("kategoria", "Zvieratá");
                 startActivity(intent);
             }
         });
@@ -124,7 +132,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onClick(View view)
             {
-                Intent intent = new Intent(CategoriesActivity.this, KategoriaNabytok.class);
+                Intent intent = new Intent(CategoriesActivity.this, SelectedCategoryActivity.class);
+                intent.putExtra("kategoria", "Nábytok");
                 startActivity(intent);
             }
         });
@@ -143,7 +152,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case (R.id.nav_home):{
+
+            case (R.id.nav_home): {
                 Intent intent = new Intent(CategoriesActivity.this, MenuActivity.class);
                 startActivity(intent);
                 break;
@@ -153,8 +163,26 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
                 break;
             }
 
+            case (R.id.nav_search):{
+                Intent intent = new Intent(CategoriesActivity.this, SearchProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_add):{
+                Intent intent = new Intent(CategoriesActivity.this, AddNewProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
             case (R.id.nav_profile): {
                 Intent intent = new Intent(CategoriesActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_myProducts):{
+                Intent intent = new Intent(CategoriesActivity.this, MyProductsActivity.class);
                 startActivity(intent);
                 break;
             }

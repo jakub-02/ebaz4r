@@ -87,7 +87,6 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-
             case (R.id.nav_home): {
                 Intent intent = new Intent(ProductDetailActivity.this, MenuActivity.class);
                 startActivity(intent);
@@ -100,8 +99,26 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
                 break;
             }
 
+            case (R.id.nav_search):{
+                Intent intent = new Intent(ProductDetailActivity.this, SearchProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_add):{
+                Intent intent = new Intent(ProductDetailActivity.this, AddNewProductActivity.class);
+                startActivity(intent);
+                break;
+            }
+
             case (R.id.nav_profile): {
                 Intent intent = new Intent(ProductDetailActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                break;
+            }
+
+            case (R.id.nav_myProducts):{
+                Intent intent = new Intent(ProductDetailActivity.this, MyProductsActivity.class);
                 startActivity(intent);
                 break;
             }

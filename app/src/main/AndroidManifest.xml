@@ -9,17 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyProductsActivity"></activity>
+        <activity android:name=".SelectedCategoryActivity"></activity>
+        <activity android:name=".SearchProductActivity" />
+        <activity android:name=".MyProductsActivity" />
         <activity android:name=".ProductDetailActivity" />
-        <activity android:name=".KategoriaOstatne" />
-        <activity android:name=".KategoriaAuta" />
-        <activity android:name=".KategoriaNabytok" />
-        <activity android:name=".KategoriaHudba" />
-        <activity android:name=".KategoriaSport" />
-        <activity android:name=".KategoriaKnihy" />
-        <activity android:name=".KategoriaZvierata" />
-        <activity android:name=".KategoriaOblecenie" />
-        <activity android:name=".KategoriaElektronika" />
         <activity android:name=".AddNewProductActivity" />
         <activity android:name=".ProfileActivity" />
         <activity
