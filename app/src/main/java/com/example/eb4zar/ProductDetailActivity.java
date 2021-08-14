@@ -71,6 +71,10 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
 
         menu = navigationView.getMenu();
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
+
         nacitajFotku();
         nacitajData();
     }

@@ -64,6 +64,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         menu = navigationView.getMenu();
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
+
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(this));

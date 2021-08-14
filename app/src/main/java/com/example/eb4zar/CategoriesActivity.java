@@ -56,6 +56,10 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
 
         menu = navigationView.getMenu();
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
+
         auta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)

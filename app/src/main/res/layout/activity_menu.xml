@@ -40,16 +40,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:titleTextColor="@color/white" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="0dp"
-                android:layout_height="160dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                app:srcCompat="@drawable/logo" />
-
             <androidx.recyclerview.widget.RecyclerView
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 android:id="@+id/recycler_menu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
