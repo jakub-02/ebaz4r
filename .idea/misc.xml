@@ -3,8 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_add_new_product.xml" value="0.12613981762917933" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_categories.xml" value="0.12613981762917933" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_login.xml" value="0.12613981762917933" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_main.xml" value="0.12613981762917933" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_menu.xml" value="0.12613981762917933" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_my_products.xml" value="0.13632246376811594" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_product_detail.xml" value="0.13632246376811594" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_profile.xml" value="0.12613981762917933" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/my_product_layout.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/product_items_layout.xml" value="0.12613981762917933" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/spinner_item.xml" value="0.12613981762917933" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/toolbar.xml" value="0.12613981762917933" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/menu/main_menu.xml" value="0.2175925925925926" />
       </map>
     </option>
   </component>

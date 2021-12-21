@@ -167,6 +167,8 @@ public class AddNewProductActivity extends AppCompatActivity implements AdapterV
 
         reference.child("casPridania").setValue(saveCurrentTime);
 
+        reference.child("fotka").setValue("default");
+
         ulozFotkuStorage();
 
         Toast.makeText(this, "Inzerát bol vytvorený.", Toast.LENGTH_LONG).show();
