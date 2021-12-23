@@ -4,26 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginBottom="20dp"
-    app:cardElevation="15dp">
+    android:layout_margin="20dp"
+    app:cardElevation="20dp">
 
     <RelativeLayout
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
-
-    <TextView
-        android:id="@+id/nazovInzeratu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nazov Produktu"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:gravity="center_horizontal"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"/>
+        android:padding="10dp">
 
         <ImageView
             android:id="@+id/fotkaProduktu"
@@ -31,22 +18,38 @@
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@drawable/logo"
-            android:layout_margin="10dp"
-            android:layout_below="@id/nazovInzeratu"
-            >
+            android:contentDescription="obrazok">
         </ImageView>
 
-        <TextView
-            android:id="@+id/cenaInzeratu"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cena Produktu"
-            android:textSize="15sp"
-            android:padding="5dp"
-            android:textAlignment="textEnd"
             android:layout_below="@id/fotkaProduktu"
-            android:textStyle="bold"
-            android:gravity="end" />
+            android:layout_marginTop="5dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/nazovInzeratu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="Nazov"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cenaInzeratu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="end"
+                android:text="Cena"
+                android:textSize="20sp"
+                />
+
+        </LinearLayout>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
