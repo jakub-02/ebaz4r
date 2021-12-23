@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -174,6 +175,11 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
             }
 
             case (R.id.nav_logout): {
+                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("remember", "false");
+                editor.apply();
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(MyProductsActivity.this, MainActivity.class);
                 startActivity(intent);
                 Toast.makeText(MyProductsActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();

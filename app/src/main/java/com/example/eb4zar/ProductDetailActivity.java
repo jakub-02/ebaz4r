@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -128,6 +130,11 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
             }
 
             case (R.id.nav_logout): {
+                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("remember", "false");
+                editor.apply();
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(ProductDetailActivity.this, MainActivity.class);
                 startActivity(intent);
                 Toast.makeText(ProductDetailActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();

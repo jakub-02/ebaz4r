@@ -1,16 +1,20 @@
 package com.example.eb4zar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.eb4zar.Prevalent.Prevalent;
 import com.example.eb4zar.model.UserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,10 +26,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import io.paperdb.Paper;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginTlacidlo;
     private EditText mailEdit, hesloEdit;
+
+    private String parentDbName = "Users";
+    private CheckBox rememberBox;
+
+    private String mail;
+    private String heslo;
 
     FirebaseAuth mFirebaseAuth;
     FirebaseDatabase firebaseDatabase;
@@ -39,14 +51,16 @@ public class LoginActivity extends AppCompatActivity {
         mailEdit = findViewById(R.id.mail);
         hesloEdit = findViewById(R.id.heslo);
 
+        rememberBox = findViewById(R.id.rememberBox);
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         loginTlacidlo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mail =  mailEdit.getText().toString();
-                String heslo = hesloEdit.getText().toString();
+                mail =  mailEdit.getText().toString();
+                heslo = hesloEdit.getText().toString();
 
                 if (TextUtils.isEmpty(mail) && TextUtils.isEmpty(heslo)) {
                     Toast.makeText(LoginActivity.this, "Zadajte svoj email a heslo!", Toast.LENGTH_SHORT).show();
@@ -71,6 +85,24 @@ public class LoginActivity extends AppCompatActivity {
                                                 prihlasenie(task.getResult().getUser());
                                             }
                                         }});
+                }
+            }
+        });
+
+        rememberBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "true");
+                    editor.apply();
+                }
+                else if (!buttonView.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "false");
+                    editor.apply();
                 }
             }
         });

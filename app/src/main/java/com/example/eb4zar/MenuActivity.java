@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,9 +27,12 @@ import com.example.eb4zar.model.ProductDetail;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import io.paperdb.Paper;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -86,7 +90,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         FirebaseRecyclerAdapter<ProductDetail, ProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<ProductDetail, ProductViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull ProductDetail model)
+                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull ProductDetail model)
                     {
                         holder.txtNazovInzeratu.setText(model.getNazov());
                         holder.txtCenaInzeratu.setText(model.getCena() + "€");
@@ -163,6 +167,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             }
 
             case (R.id.nav_logout): {
+                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("remember", "false");
+                editor.apply();
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(MenuActivity.this, MainActivity.class);
                 startActivity(intent);
                 Toast.makeText(MenuActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
