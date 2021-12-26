@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="20dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginHorizontal="20dp"
     app:cardElevation="20dp">
 
     <RelativeLayout
@@ -46,6 +47,7 @@
                 android:layout_weight="2"
                 android:gravity="end"
                 android:text="Cena"
+                android:textColor="@color/colorSecondary"
                 android:textSize="20sp"
                 />
 

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/white"
     tools:context=".LoginActivity">
 
     <ImageView
@@ -26,11 +26,12 @@
         android:background="@drawable/input"
         android:drawableLeft="@drawable/ic_email"
         android:drawablePadding="5dp"
+        android:drawableTint="@color/colorPrimary"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:padding="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -45,24 +46,25 @@
         android:background="@drawable/input"
         android:drawableLeft="@drawable/ic_lock"
         android:drawablePadding="5dp"
+        android:drawableTint="@color/colorPrimary"
         android:hint="Heslo"
         android:inputType="textPassword"
         android:padding="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="17sp"
         android:textStyle="bold" />
 
     <CheckBox
         android:id="@+id/rememberBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@id/login"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:text="Zapamätať prihlásenie"
-        app:buttonTint="@color/colorPrimary"
         android:textColor="@color/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        app:buttonTint="@color/colorPrimary">
 
     </CheckBox>
 

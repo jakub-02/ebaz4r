@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <ImageView
@@ -38,14 +38,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/main_button"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/input"
         android:padding="20dp"
-        android:textAllCaps="false"
-        android:textSize="18sp"
         android:text="Zaregistruj sa"
-        android:textColor="@android:color/white"
-        />
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
 </RelativeLayout>

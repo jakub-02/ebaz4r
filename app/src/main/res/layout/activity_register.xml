@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/white"
     tools:context=".RegisterActivity">
 
 <RelativeLayout
@@ -31,12 +31,13 @@
         android:layout_marginRight="15dp"
         android:background="@drawable/input"
         android:drawableLeft="@drawable/ic_osoba"
+        android:drawableTint="@color/colorPrimary"
         android:drawablePadding="5dp"
         android:hint="Meno"
         android:inputType="text"
         android:padding="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -51,11 +52,12 @@
         android:background="@drawable/input"
         android:drawableLeft="@drawable/ic_osoba"
         android:drawablePadding="5dp"
+        android:drawableTint="@color/colorPrimary"
         android:hint="Priezvisko"
         android:inputType="text"
         android:padding="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -73,8 +75,9 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:padding="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:drawableTint="@color/colorPrimary"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -92,8 +95,9 @@
         android:hint="Telefónne číslo"
         android:inputType="numberDecimal"
         android:padding="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:drawableTint="@color/colorPrimary"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -112,8 +116,9 @@
         android:inputType="textPassword"
         android:minEms="8"
         android:padding="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:drawableTint="@color/colorPrimary"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -132,8 +137,9 @@
         android:inputType="textPassword"
         android:minEms="8"
         android:padding="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:drawableTint="@color/colorPrimary"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="17sp"
         android:textStyle="bold" />
 

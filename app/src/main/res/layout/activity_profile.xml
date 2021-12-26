@@ -19,13 +19,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_dark_background"
+        android:background="@color/colorSecondary"
         tools:context=".ProfileActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/cardview_dark_background">
+            android:background="@color/colorSecondary">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -62,7 +62,7 @@
                     android:gravity="center"
                     android:layout_margin="10dp"
                     android:text="email"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -118,25 +118,6 @@
                     android:textColorHint="@android:color/white"
                     android:textSize="17sp"
                     android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/adresaProfil"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/input"
-                    android:drawableLeft="@drawable/ic_home"
-                    android:drawablePadding="5dp"
-                    android:drawableTint="@android:color/white"
-                    android:inputType="text"
-                    android:padding="20dp"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    android:hint="Adresa"/>
 
                 <Button
                     android:id="@+id/save"

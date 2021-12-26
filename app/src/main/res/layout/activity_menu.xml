@@ -8,7 +8,7 @@
     tools:context=".MenuActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    android:background="@color/cardview_dark_background">
+    android:background="@color/colorSecondary">
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/cardview_dark_background">
+            android:background="@color/colorSecondary">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -42,6 +42,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                android:layout_marginTop="20dp"
                 android:id="@+id/recycler_menu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

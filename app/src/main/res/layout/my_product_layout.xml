@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginBottom="10dp"
     app:cardElevation="15dp">
 
     <RelativeLayout
@@ -15,30 +16,30 @@
             android:id="@+id/nazovInzeratu"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:text="nazov inzeratu"
-            android:textSize="20sp"
-            android:padding="5dp"
             android:layout_margin="5dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"/>
+            android:padding="5dp"
+            android:text="nazov inzeratu"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <ImageView
+        <Button
             android:id="@+id/buttonEdit"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="5dp"
-            android:src="@drawable/paper"
+            android:layout_toStartOf="@+id/buttonDelete"
             android:layout_toLeftOf="@+id/buttonDelete"
-            android:layout_toStartOf="@+id/buttonDelete" />
+            android:background="@drawable/paper" />
 
-        <ImageView
+        <Button
             android:id="@+id/buttonDelete"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="5dp"
-            android:src="@drawable/delete"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:background="@drawable/delete" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
