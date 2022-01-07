@@ -1,11 +1,19 @@
-# ebaz4r
+# Zoznam úloh k 26.12.2021
 
-Čo treba dokončiť...
+1. Splashscreen - bude obsahovať logo vycentrované na stred obrazovky a pozadie (asi biela farba), po skončení animácie nabehne úvodná obrazovka.
 
-1. Moje inzeráty - stránka na ktorej budú zobrazené všetky inzeráty užívateľa pod sebou s dvoma tlačítkami (úprava, vymazanie)
-2. Úprava inzerátu - osobitná stránka na úpravu inzerátu zmena popisu, ceny, fotky 
-3. Verejný profil užívateľa - na tejto stránke budeme vidieť fotku, meno, mail, číslo, adresu, všetky inzeráty daného užívateľa a v budúcnosti aj možnosť ohodnotiť predajcu, pozrieť si hodnotenia iných užívateľov na tohto predajcu
-4. Vyhľadávanie inzerátov - táto funkcia bude zrejme mať vlastnú stránku, alebo bude zahrnutá v každej kategórii (v tom prípade bude vyhľadávať iba spomedzi danej kategórie)
-5. Dizajn úvodnej stránky - úvodná stránka bude slúžiť skôr ako prezentačná, chcel by som tam nejako zhrunúť možnosti aplikácie (pekne s obrázkami Flaticon)
-6. Úprava pridávania inzerátov - možnosť pridávania viacerých fotiek, ikonka pridávania inzerátov bude nahradená položkou v menu
-7. Upráva detailu inzerátu - možnosť zobrazenia viacerých fotografií, možnosť priblíženia fotografie, meno, priezvisko, fotka predjcu, možnosť kliknúť na profil predajcu
+2. ProfileActivity Crash Fix - treba opraviť chybu v ProfileActivity, ktorá sposobuje crash aplikácie, chyba zrejme spočíva v snahe aplikácie načítať uloženú profilovú foto.
+
+3. Zmena dizajnu textInput - momentálne používame defaultný EditText s backgroundom @drawable/input, je to celkom pekné, ale môže to byť oveľa krajšie, takže radšej použijeme Outlined text field (https://material.io/components/text-fields/android#outlined-text-field), samozrejme zachováme farby a použité ikony pred textom...
+
+4. MenuActivity vynovenie - úvodná aktivita nebude obsahovať žiadne inzeráty, namiesto toho bude obsahovať stručnú a pútavú reklamu (môže byť aj video) toho, čo aplikácia ponúka.
+
+5. Verejný profil užívateľa - na tejto stránke budeme vidieť fotku, meno, mail, číslo, všetky inzeráty daného užívateľa.
+
+6. Hodnotenie predajcov - funkcia ohodnotiť predajcu na jeho profile, zobrazenie hodnotení od iných užívateľov.
+
+7. Vyhľadávanie produktov - funkcionalitu otestovať na už vytvorenej aktivite SearchActivity, ale časom by som chcel searchBar v každej kategórii...
+
+8. Onclick v detaile inzerátu - v detaile inzerátu sa nachádzajú 3 "tlačidlá": meno predajcu - odkaz na verejný profil predajcu, email - otvorý gmail a prepíše adresu mailu, telefón - otvorí telefón a prepíše tam číslo...
+
+9. Tlačidlá v mojich inzerátoch - po kliknutí na tlačidlo EDIT sa otovrí upravovanie inzerátu s možnosťou úpravy a uloženia zmien, po kliknutí na tlačidlo DELETE sa otvorí dialog, ktorý sa nás či chceme vymazať inzerát (https://material.io/components/dialogs/android#alert-dialog).
