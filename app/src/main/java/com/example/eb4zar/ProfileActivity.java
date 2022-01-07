@@ -52,6 +52,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     ImageView userProfil;
     Button save;
 
+    boolean fotka = false;
+
     EditText menoProfil, priezviskoProfil, telefonProfil;
 
     String meno, priezvisko, telefon, downloadImageUrl;
@@ -164,6 +166,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         {
             ImageUri = data.getData();
             userProfil.setImageURI(ImageUri);
+            fotka = true;
         }
     }
 
@@ -263,7 +266,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         reference.child("telefon").setValue(telefonProfil.getText().toString());
         telefon = telefonProfil.getText().toString();
 
+        if(fotka){
         ulozFotkuStorage();
+        }
 
         Toast.makeText(this, "Úpravy boli prijaté", Toast.LENGTH_LONG).show();
 
