@@ -2,7 +2,7 @@
 
 1. Splashscreen - bude obsahovať logo vycentrované na stred obrazovky a pozadie (asi biela farba), po skončení animácie nabehne úvodná obrazovka.
 
-2. ProfileActivity Crash Fix - treba opraviť chybu v ProfileActivity, ktorá sposobuje crash aplikácie, chyba zrejme spočíva v snahe aplikácie načítať uloženú profilovú foto.
+2. ProfileActivity Crash Fix - treba opraviť chybu v ProfileActivity, ktorá sposobuje crash aplikácie, chyba zrejme spočíva v snahe aplikácie načítať uloženú profilovú foto. DONE
 
 3. Zmena dizajnu textInput - momentálne používame defaultný EditText s backgroundom @drawable/input, je to celkom pekné, ale môže to byť oveľa krajšie, takže radšej použijeme Outlined text field (https://material.io/components/text-fields/android#outlined-text-field), samozrejme zachováme farby a použité ikony pred textom...
 
