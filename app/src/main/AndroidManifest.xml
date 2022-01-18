@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectedCategoryActivity"></activity>
+        <activity
+            android:name=".PublicProfileActivity"
+            android:exported="true" />
+        <activity android:name=".SelectedCategoryActivity" />
         <activity android:name=".SearchProductActivity" />
         <activity android:name=".MyProductsActivity" />
         <activity android:name=".ProductDetailActivity" />
