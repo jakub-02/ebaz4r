@@ -45,6 +45,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Navig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_selected_category);
 
         drawerLayout = findViewById(R.id.drawer_layout);

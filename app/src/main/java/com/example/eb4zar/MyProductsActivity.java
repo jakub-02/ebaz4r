@@ -47,6 +47,7 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_my_products);
 
         drawerLayout = findViewById(R.id.drawer_layout);

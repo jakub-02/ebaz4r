@@ -68,6 +68,7 @@ public class AddNewProductActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_add_new_product);
 
         drawerLayout = findViewById(R.id.drawer_layout);
