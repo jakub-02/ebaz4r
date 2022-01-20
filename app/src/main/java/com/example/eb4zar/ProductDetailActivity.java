@@ -41,6 +41,8 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
 
     DatabaseReference reference, sellerReference;
 
+    String seller;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +86,7 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProductDetailActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", seller);
                 startActivity(intent);
             }
         });
@@ -200,7 +203,7 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
                 String name = snapshot.child("nazov").getValue().toString();
                 String desc = snapshot.child("popis").getValue().toString();
                 String price = snapshot.child("cena").getValue().toString();
-                String seller = snapshot.child("uzivatel").getValue().toString();
+                seller = snapshot.child("uzivatel").getValue().toString();
 
                 productName.setText(name);
                 productDesc.setText(desc);

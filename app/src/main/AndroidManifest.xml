@@ -11,13 +11,27 @@
         android:theme="@style/SplashScreen">
         <activity
             android:name=".PublicProfileActivity"
-            android:exported="true" />
-        <activity android:name=".SelectedCategoryActivity" />
-        <activity android:name=".SearchProductActivity" />
-        <activity android:name=".MyProductsActivity" />
-        <activity android:name=".ProductDetailActivity" />
-        <activity android:name=".AddNewProductActivity" />
-        <activity android:name=".ProfileActivity" />
+            android:screenOrientation="portrait"
+            android:exported="true"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".SelectedCategoryActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".SearchProductActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MyProductsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ProductDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".AddNewProductActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ProfileActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MenuActivity"
             android:screenOrientation="portrait" />
@@ -35,7 +49,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
