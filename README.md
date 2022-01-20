@@ -1,6 +1,6 @@
 # Zoznam úloh k 26.12.2021
 
-1. Splashscreen - bude obsahovať logo vycentrované na stred obrazovky a pozadie (asi biela farba), po skončení animácie nabehne úvodná obrazovka.
+1. Splashscreen - bude obsahovať logo vycentrované na stred obrazovky a pozadie (asi biela farba), po skončení animácie nabehne úvodná obrazovka. DONE
 
 2. ProfileActivity Crash Fix - treba opraviť chybu v ProfileActivity, ktorá sposobuje crash aplikácie, chyba zrejme spočíva v snahe aplikácie načítať uloženú profilovú foto. DONE
 
