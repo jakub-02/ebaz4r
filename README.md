@@ -14,6 +14,6 @@
 
 7. Vyhľadávanie produktov - funkcionalitu otestovať na už vytvorenej aktivite SearchActivity, ale časom by som chcel searchBar v každej kategórii...
 
-8. Onclick v detaile inzerátu - v detaile inzerátu sa nachádzajú 3 "tlačidlá": meno predajcu - odkaz na verejný profil predajcu, email - otvorý gmail a prepíše adresu mailu, telefón - otvorí telefón a prepíše tam číslo...
+8. Onclick v detaile inzerátu - v detaile inzerátu sa nachádzajú 3 "tlačidlá": meno predajcu - odkaz na verejný profil predajcu, email - otvorý gmail a prepíše adresu mailu, telefón - otvorí telefón a prepíše tam číslo... DONE
 
 9. Tlačidlá v mojich inzerátoch - po kliknutí na tlačidlo EDIT sa otovrí upravovanie inzerátu s možnosťou úpravy a uloženia zmien, po kliknutí na tlačidlo DELETE sa otvorí dialog, ktorý sa nás či chceme vymazať inzerát (https://material.io/components/dialogs/android#alert-dialog).
