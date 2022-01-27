@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreen">
         <activity
+            android:name=".RateUser"
+            android:exported="false"
+            android:theme="@style/AppTheme"/>
+        <activity
             android:name=".EditProductAcitvity"
             android:exported="true" />
         <activity
