@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -45,7 +46,6 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Navig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_selected_category);
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -93,7 +93,7 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Navig
         FirebaseRecyclerAdapter<ProductDetail, ProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<ProductDetail, ProductViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull ProductDetail model)
+                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull ProductDetail model)
                     {
                         if(model.getKategoria().equals(selectedCategory)){
                             holder.txtNazovInzeratu.setText(model.getNazov());

@@ -27,7 +27,6 @@ public class SearchProductActivity extends AppCompatActivity implements Navigati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_search_product);
 
         drawerLayout = findViewById(R.id.drawer_layout);

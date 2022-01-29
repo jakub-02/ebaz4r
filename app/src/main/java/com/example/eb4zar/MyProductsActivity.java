@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,20 +23,17 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.eb4zar.ViewHolder.MyProductViewHolder;
-import com.example.eb4zar.ViewHolder.ProductViewHolder;
 import com.example.eb4zar.model.ProductDetail;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.squareup.picasso.Picasso;
 
 public class MyProductsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -55,7 +51,6 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_my_products);
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -161,7 +156,7 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
                                         @Override
                                         public void onClick(View v) {
                                             String zvolenyProdukt = getRef(position).getKey();
-                                            Intent i = new Intent(MyProductsActivity.this, EditProductAcitvity.class);
+                                            Intent i = new Intent(MyProductsActivity.this, EditProductActivity.class);
                                             i.putExtra("zvolenyProdukt", zvolenyProdukt);
                                             startActivity(i);
                                         }

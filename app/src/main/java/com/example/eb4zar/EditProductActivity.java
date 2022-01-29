@@ -1,7 +1,6 @@
 package com.example.eb4zar;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,9 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -33,35 +30,39 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class AddNewProductActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class EditProductActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private String zvolenyProdukt;
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
 
-    ImageView obrazokProduktu;
-
-    TextInputEditText nazovText, popisText, cenaText;
+    ImageView obrazok;
+    TextInputEditText nazov, popis, cena;
     AutoCompleteTextView kategoria;
-    String uid, downloadImageUrl, kategoriaText;
+    Button uprav;
 
-    String saveCurrentDate, saveCurrentTime, productRandomKey;
-
-    Button add;
+    String kategoriaText, downloadImageUrl;
 
     DatabaseReference reference;
     StorageReference fotkyReference;
+
+    boolean fotka = false;
 
     Uri ImageUri;
 
@@ -70,23 +71,28 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_product);
+        setContentView(R.layout.activity_edit_product);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
+        zvolenyProdukt = getIntent().getExtras().get("zvolenyProdukt").toString();
+
+        reference = FirebaseDatabase.getInstance().getReference().child("produkty").child(zvolenyProdukt);
+        fotkyReference = FirebaseStorage.getInstance().getReference().child("produktoveObrazky");
+
+        drawerLayout = findViewById(R.id.drawer_layout1);
+        navigationView = findViewById(R.id.nav_view1);
         toolbar = findViewById(R.id.toolbar);
-
-        nazovText = findViewById(R.id.nazovText);
-        popisText = findViewById(R.id.popisText);
-        cenaText = findViewById(R.id.cenaText);
+        obrazok = findViewById(R.id.obrazokProduktu);
         kategoria = findViewById(R.id.kategoria);
+        uprav = findViewById(R.id.uprav);
+        nazov = findViewById(R.id.nazovText);
+        popis = findViewById(R.id.popisText);
+        cena = findViewById(R.id.cenaText);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Pridajte nový inzerát");
 
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle=new
+                ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -98,18 +104,13 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
 
-        //nacitanie uid uzivatela
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            uid = user.getUid();
-        }
-
-        reference = FirebaseDatabase.getInstance().getReference().child("produkty").child(uid);
-        fotkyReference = FirebaseStorage.getInstance().getReference().child("produktoveObrazky");
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, R.array.kategorie, R.layout.spinner_item);
-        kategoria.setAdapter(adapter);
+        obrazok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                OtvorGaleriu();
+            }
+        });
 
         kategoria.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -118,22 +119,15 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
             }
         });
 
-        //nastavenie obrazka
-        obrazokProduktu = findViewById(R.id.obrazokProduktu);
-        obrazokProduktu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                OtvorGaleriu();
-            }
-        });
+        nacitajFotku();
+        nacitajData();
 
-        //onclick tlacitko
-        add = findViewById(R.id.vytvorit);
-        add.setOnClickListener(new View.OnClickListener() {
+        uprav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 skontrolujPrazndePolia();
+                Intent intent = new Intent(EditProductActivity.this, MyProductsActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -153,25 +147,73 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         if (requestCode==GalleryPick  &&  resultCode==RESULT_OK  &&  data!=null)
         {
             ImageUri = data.getData();
-            obrazokProduktu.setImageURI(ImageUri);
+            obrazok.setImageURI(ImageUri);
+            fotka = true;
         }
     }
 
-    private void skontrolujPrazndePolia(){
-        String nazov = nazovText.getText().toString();
-        String popis = popisText.getText().toString();
-        String cena = cenaText.getText().toString();
+    private void nacitajFotku() {
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String link = snapshot.child("fotka").getValue().toString();
+                if (link.equals("default")) {
 
-        if(TextUtils.isEmpty(nazov) && TextUtils.isEmpty(popis) && TextUtils.isEmpty(cena)){
+                }
+                else{
+                    Picasso.get().load(link).into(obrazok);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void nacitajData(){
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String name = snapshot.child("nazov").getValue().toString();
+                String desc = snapshot.child("popis").getValue().toString();
+                String price = snapshot.child("cena").getValue().toString();
+                String cat = snapshot.child("kategoria").getValue().toString();
+
+                nazov.setText(name);
+                popis.setText(desc);
+                cena.setText(price);
+                kategoriaText = cat;
+                kategoria.setText(kategoriaText);
+
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                        EditProductActivity.this, R.array.kategorie, R.layout.spinner_item);
+                kategoria.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void skontrolujPrazndePolia(){
+        String nazovText = nazov.getText().toString();
+        String popisText = popis.getText().toString();
+        String cenaText = cena.getText().toString();
+
+        if(TextUtils.isEmpty(nazovText) && TextUtils.isEmpty(popisText) && TextUtils.isEmpty(cenaText)){
             Toast.makeText(this, "Vyššie uvedené polia nesmú byť prázdne.", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(nazov)){
+        else if (TextUtils.isEmpty(nazovText)){
             Toast.makeText(this, "Zadajte názov inzerátu!", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(popis)){
+        else if (TextUtils.isEmpty(popisText)){
             Toast.makeText(this, "Zadajte popis inzerátu!", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(cena)){
+        else if (TextUtils.isEmpty(cenaText)){
             Toast.makeText(this, "Zadajte cenu inzerátu!", Toast.LENGTH_SHORT).show();
         }
 
@@ -179,44 +221,6 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
             update();
         }
     }
-
-    public void update() {
-        Calendar calendar = Calendar.getInstance();
-
-        SimpleDateFormat currentDate = new SimpleDateFormat("MMMddyyyy");
-        saveCurrentDate = currentDate.format(calendar.getTime());
-
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
-        saveCurrentTime = currentTime.format(calendar.getTime());
-
-        productRandomKey = saveCurrentTime + "" +saveCurrentDate;
-
-        reference = FirebaseDatabase.getInstance().getReference().child("produkty").child(uid + productRandomKey);
-
-        reference.child("nazov").setValue(nazovText.getText().toString());
-
-        reference.child("uzivatel").setValue(uid);
-
-        reference.child("kategoria").setValue(kategoriaText);
-
-        reference.child("popis").setValue(popisText.getText().toString());
-
-        reference.child("cena").setValue(cenaText.getText().toString());
-
-        reference.child("datumPridania").setValue(saveCurrentDate);
-
-        reference.child("casPridania").setValue(saveCurrentTime);
-
-        reference.child("fotka").setValue("default");
-
-        ulozFotkuStorage();
-
-        Toast.makeText(this, "Inzerát bol vytvorený.", Toast.LENGTH_LONG).show();
-
-        Intent intent = new Intent(AddNewProductActivity.this, MenuActivity.class);
-        startActivity(intent);
-    }
-
 
     private void ulozFotkuStorage()
     {
@@ -228,7 +232,7 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
             public void onFailure(@NonNull Exception e)
             {
                 String message = e.toString();
-                Toast.makeText(AddNewProductActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProductActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -253,7 +257,6 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
                         if (task.isSuccessful())
                         {
                             downloadImageUrl = task.getResult().toString();
-                            reference = FirebaseDatabase.getInstance().getReference().child("produkty").child(uid + productRandomKey);
                             reference.child("fotka").setValue(downloadImageUrl);
                         }
                     }
@@ -262,12 +265,26 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         });
     }
 
+    public void update() {
+        reference.child("nazov").setValue(nazov.getText().toString());
+
+        reference.child("kategoria").setValue(kategoriaText);
+
+        reference.child("popis").setValue(popis.getText().toString());
+
+        reference.child("cena").setValue(cena.getText().toString());
+
+        if (fotka){
+        ulozFotkuStorage();}
+
+        Toast.makeText(this, "Inzerát bol upravený.", Toast.LENGTH_LONG).show();
+    }
+
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }
@@ -275,37 +292,38 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-
             case (R.id.nav_home): {
-                Intent intent = new Intent(AddNewProductActivity.this, MenuActivity.class);
+                Intent intent = new Intent(EditProductActivity.this, MenuActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_categories):{
-                Intent intent = new Intent(AddNewProductActivity.this, CategoriesActivity.class);
+                Intent intent = new Intent(EditProductActivity.this, CategoriesActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_search):{
-                Intent intent = new Intent(AddNewProductActivity.this, SearchProductActivity.class);
+                Intent intent = new Intent(EditProductActivity.this, SearchProductActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_add):{
+                Intent intent = new Intent(EditProductActivity.this, AddNewProductActivity.class);
+                startActivity(intent);
                 break;
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(AddNewProductActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(EditProductActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_myProducts):{
-                Intent intent = new Intent(AddNewProductActivity.this, MyProductsActivity.class);
+                Intent intent = new Intent(EditProductActivity.this, MyProductsActivity.class);
                 startActivity(intent);
                 break;
             }
@@ -316,14 +334,12 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
                 editor.putString("remember", "false");
                 editor.apply();
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(AddNewProductActivity.this, MainActivity.class);
+                Intent intent = new Intent(EditProductActivity.this, MainActivity.class);
                 startActivity(intent);
-                Toast.makeText(AddNewProductActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProductActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
                 break;
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START); return true;
     }
-
-
 }

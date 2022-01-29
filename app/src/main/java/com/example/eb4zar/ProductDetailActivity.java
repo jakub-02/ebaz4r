@@ -46,7 +46,6 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_product_detail);
 
         zvolenyProdukt = getIntent().getExtras().get("zvolenyProdukt").toString();

@@ -46,7 +46,6 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_public_profile);
 
         drawerLayout = findViewById(R.id.drawer_layout1);
