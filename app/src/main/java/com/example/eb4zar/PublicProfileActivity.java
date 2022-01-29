@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,11 +38,12 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
     DatabaseReference reference;
     StorageReference fotkyReference;
 
-    TextView userName, sellerMail, sellerPhone;
+    TextView userName, sellerMail, sellerPhone, sellerReviews;
 
     ImageView userPicture;
 
     String uid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
         drawerLayout = findViewById(R.id.drawer_layout1);
         navigationView = findViewById(R.id.nav_view1);
         toolbar = findViewById(R.id.toolbar);
+        sellerReviews = findViewById(R.id.sellerReviews);
 
         userName = findViewById(R.id.userName);
         sellerMail = findViewById(R.id.sellerMail);
@@ -80,7 +83,14 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
 
         nacitajData();
         nacitajFotku();
+
+        sellerReviews.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(PublicProfileActivity.this, RateUser.class));
+            }
+        });
     }
+
 
     @Override
     public void onBackPressed() {
