@@ -9,11 +9,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +40,8 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
     DatabaseReference reference;
     StorageReference fotkyReference;
 
-    TextView userName, sellerMail, sellerPhone, sellerReviews;
+    TextView userName, sellerMail, sellerPhone;
+    LinearLayout sellerReviews, sellerProducts;
 
     ImageView userPicture;
 
@@ -53,6 +56,7 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
         drawerLayout = findViewById(R.id.drawer_layout1);
         navigationView = findViewById(R.id.nav_view1);
         toolbar = findViewById(R.id.toolbar);
+        sellerProducts = findViewById(R.id.sellerProducts);
         sellerReviews = findViewById(R.id.sellerReviews);
 
         userName = findViewById(R.id.userName);
@@ -87,6 +91,24 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
         sellerReviews.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 startActivity(new Intent(PublicProfileActivity.this, RateUserActivity.class));
+            }
+        });
+
+        sellerMail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:" + sellerMail.getText().toString()));
+                startActivity(intent);
+            }
+        });
+
+        sellerPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + sellerPhone.getText().toString()));
+                startActivity(intent);
             }
         });
     }
