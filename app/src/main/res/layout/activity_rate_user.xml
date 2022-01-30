@@ -38,78 +38,76 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:titleTextColor="@color/white" />
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/horna"
-    app:layout_constraintTop_toBottomOf="@+id/toolbar"
-    android:padding="16dp">
+            <LinearLayout
+                android:id="@+id/horna"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ohodnot Usera"
-        android:textColor="@android:color/white"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:layout_marginLeft="5dp"
-        />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Ohodnot Usera"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:textColor="@android:color/white" />
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="3dp"
-        />
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:id="@+id/rateCount"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        />
-</LinearLayout>
+                <TextView
+                    android:id="@+id/rateCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/horna"
-                android:padding="16dp">
-    <EditText
-        android:id="@+id/nazor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/input"
-        android:hint="Napis nazor"
-        android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/horna">
 
-    <Button
-        android:id="@+id/tlacidlo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/buttons"
-        android:padding="20dp"
-        android:text="Pridaj"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="18sp" />
+                <EditText
+                    android:id="@+id/nazor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/input"
+                    android:hint="Napis nazor"
+                    android:padding="20dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:id="@+id/ukazRate"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="5dp"
-        />
+                <Button
+                    android:id="@+id/tlacidlo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/buttons"
+                    android:padding="20dp"
+                    android:text="Pridaj"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/ukazRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="40dp"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

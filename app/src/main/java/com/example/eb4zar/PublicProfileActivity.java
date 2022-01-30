@@ -86,7 +86,7 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
 
         sellerReviews.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                startActivity(new Intent(PublicProfileActivity.this, RateUser.class));
+                startActivity(new Intent(PublicProfileActivity.this, RateUserActivity.class));
             }
         });
     }

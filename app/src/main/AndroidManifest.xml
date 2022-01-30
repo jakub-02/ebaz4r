@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreen">
         <activity
-            android:name=".RateUser"
+            android:name=".RateUserActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
