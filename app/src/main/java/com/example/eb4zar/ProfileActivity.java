@@ -130,7 +130,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     }
 
     private void nacitajFotku() {
-        reference = FirebaseDatabase.getInstance().getReference().child("uzivateliaFotky").child(uid);
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -309,7 +309,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                         if (task.isSuccessful())
                         {
                             downloadImageUrl = task.getResult().toString();
-                            reference = FirebaseDatabase.getInstance().getReference().child("uzivateliaFotky").child(uid);
+                            reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
                             reference.child("fotka").setValue(downloadImageUrl);
                         }
                     }

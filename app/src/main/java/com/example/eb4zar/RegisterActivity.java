@@ -37,7 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     FirebaseAuth mFirebaseAuth;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         String telefon = telefonEdit.getText().toString();
         String heslo = hesloEdit.getText().toString();
         String heslo2 = heslo2Edit.getText().toString();
+        String fotka = "default";
 
         if (TextUtils.isEmpty(meno) && TextUtils.isEmpty(priezvisko) && TextUtils.isEmpty(mail) &&
                 TextUtils.isEmpty(telefon) && TextUtils.isEmpty(heslo) && TextUtils.isEmpty(heslo2)){
@@ -111,11 +111,11 @@ public class RegisterActivity extends AppCompatActivity {
             postupReg.setCanceledOnTouchOutside(false);
             postupReg.show();
 
-            registeracia(mail, heslo, meno, priezvisko, telefon);
+            registeracia(mail, heslo, meno, priezvisko, telefon, fotka);
         }
     }
 
-    private void registeracia(String mail, String heslo, String meno, String priezvisko, String telefon){
+    private void registeracia(String mail, String heslo, String meno, String priezvisko, String telefon, String fotka){
         mFirebaseAuth.createUserWithEmailAndPassword(mail, heslo)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
 
@@ -127,14 +127,12 @@ public class RegisterActivity extends AppCompatActivity {
                         }
 
                         else{
-                            UserDetail userDetail = new UserDetail(meno, priezvisko, telefon, mail);
+                            UserDetail userDetail = new UserDetail(meno, priezvisko, telefon, mail, fotka);
                             String uid = task.getResult().getUser().getUid();
                             firebaseDatabase.getReference("uzivatelia").child(uid).setValue(userDetail)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            reference = FirebaseDatabase.getInstance().getReference().child("uzivateliaFotky").child(uid);
-                                            reference.child("fotka").setValue("default");
                                             Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
                                             startActivity(intent);
                                         }

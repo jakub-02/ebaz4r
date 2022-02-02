@@ -5,16 +5,17 @@ public class UserDetail {
     private String priezvisko;
     private String telefon;
     private String mail;
+    private String fotka;
 
     public UserDetail(){
-
     }
 
-    public UserDetail(String meno, String priezvisko, String telefon, String mail){
+    public UserDetail(String meno, String priezvisko, String telefon, String mail, String fotka){
         this.meno = meno;
         this.priezvisko = priezvisko;
         this.telefon = telefon;
         this.mail = mail;
+        this.fotka = fotka;
     }
 
     public String getMeno() {
@@ -47,5 +48,13 @@ public class UserDetail {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public String getFotka() {
+        return fotka;
+    }
+
+    public void setFotka(String fotka) {
+        this.fotka = fotka;
     }
 }

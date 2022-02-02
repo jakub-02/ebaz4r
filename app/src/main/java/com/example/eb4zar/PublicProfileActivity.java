@@ -90,7 +90,7 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
 
         sellerReviews.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                startActivity(new Intent(PublicProfileActivity.this, RateUserActivity.class));
+                startActivity(new Intent(PublicProfileActivity.this, UserRatingsActivity.class));
             }
         });
 
@@ -200,7 +200,7 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
     }
 
     private void nacitajFotku() {
-        reference = FirebaseDatabase.getInstance().getReference().child("uzivateliaFotky").child(uid);
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
