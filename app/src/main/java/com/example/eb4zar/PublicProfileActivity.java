@@ -40,7 +40,7 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
     DatabaseReference reference;
     StorageReference fotkyReference;
 
-    TextView userName, sellerMail, sellerPhone;
+    TextView userName, sellerMail, sellerPhone, pocetInzeratov, pocetHodnoteni;
     LinearLayout sellerReviews, sellerProducts;
 
     ImageView userPicture;
@@ -63,6 +63,8 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
         sellerMail = findViewById(R.id.sellerMail);
         sellerPhone = findViewById(R.id.sellerPhone);
         userPicture = findViewById(R.id.userPicture);
+        pocetInzeratov = findViewById(R.id.pocetInzeratov);
+        pocetHodnoteni = findViewById(R.id.pocetHodnoteni);
 
         setSupportActionBar(toolbar);
 
@@ -186,10 +188,14 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
                 String phone = snapshot.child("telefon").getValue().toString();
                 String name = snapshot.child("meno").getValue().toString();
                 String surname = snapshot.child("priezvisko").getValue().toString();
+                String hodnotenia = snapshot.child("hodnotenia").getValue().toString();
+                String inzeraty = snapshot.child("inzeraty").getValue().toString();
 
                 sellerMail.setText(mail);
                 sellerPhone.setText(phone);
                 userName.setText(name + " " + surname);
+                pocetHodnoteni.setText(hodnotenia);
+                pocetInzeratov.setText(inzeraty);
             }
 
             @Override

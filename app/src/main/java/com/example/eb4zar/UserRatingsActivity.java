@@ -10,12 +10,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserRatingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -23,6 +32,8 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
+
+    FloatingActionButton pridaj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +43,7 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
         drawerLayout = findViewById(R.id.drawer_layout1);
         navigationView = findViewById(R.id.nav_view1);
         toolbar = findViewById(R.id.toolbar);
+        pridaj = findViewById(R.id.pridaj);
 
         setSupportActionBar(toolbar);
 
@@ -48,6 +60,14 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
+
+        pridaj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(UserRatingsActivity.this, RateUserActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

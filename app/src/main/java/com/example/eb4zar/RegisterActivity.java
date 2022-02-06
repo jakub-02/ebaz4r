@@ -72,6 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
         String heslo = hesloEdit.getText().toString();
         String heslo2 = heslo2Edit.getText().toString();
         String fotka = "default";
+        int inzeraty = 0;
+        int hodnotenia = 0;
 
         if (TextUtils.isEmpty(meno) && TextUtils.isEmpty(priezvisko) && TextUtils.isEmpty(mail) &&
                 TextUtils.isEmpty(telefon) && TextUtils.isEmpty(heslo) && TextUtils.isEmpty(heslo2)){
@@ -111,11 +113,11 @@ public class RegisterActivity extends AppCompatActivity {
             postupReg.setCanceledOnTouchOutside(false);
             postupReg.show();
 
-            registeracia(mail, heslo, meno, priezvisko, telefon, fotka);
+            registeracia(mail, heslo, meno, priezvisko, telefon, fotka, inzeraty, hodnotenia);
         }
     }
 
-    private void registeracia(String mail, String heslo, String meno, String priezvisko, String telefon, String fotka){
+    private void registeracia(String mail, String heslo, String meno, String priezvisko, String telefon, String fotka, int inzeraty, int hodnotenia){
         mFirebaseAuth.createUserWithEmailAndPassword(mail, heslo)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
 
@@ -123,11 +125,11 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()){
                             postupReg.dismiss();
-                            Toast.makeText(RegisterActivity.this, "Registrácia neúspešná, skúste to znovu prosím.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Registrácia nebola úspešná, skúste to znovu prosím.", Toast.LENGTH_SHORT).show();
                         }
 
                         else{
-                            UserDetail userDetail = new UserDetail(meno, priezvisko, telefon, mail, fotka);
+                            UserDetail userDetail = new UserDetail(meno, priezvisko, telefon, mail, fotka, inzeraty, hodnotenia);
                             String uid = task.getResult().getUser().getUid();
                             firebaseDatabase.getReference("uzivatelia").child(uid).setValue(userDetail)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -6,16 +6,20 @@ public class UserDetail {
     private String telefon;
     private String mail;
     private String fotka;
+    private int inzeraty;
+    private int hodnotenia;
 
     public UserDetail(){
     }
 
-    public UserDetail(String meno, String priezvisko, String telefon, String mail, String fotka){
+    public UserDetail(String meno, String priezvisko, String telefon, String mail, String fotka, int inzeraty, int hodnotenia){
         this.meno = meno;
         this.priezvisko = priezvisko;
         this.telefon = telefon;
         this.mail = mail;
         this.fotka = fotka;
+        this.inzeraty = inzeraty;
+        this.hodnotenia = hodnotenia;
     }
 
     public String getMeno() {
@@ -56,5 +60,21 @@ public class UserDetail {
 
     public void setFotka(String fotka) {
         this.fotka = fotka;
+    }
+
+    public int getInzeraty() {
+        return inzeraty;
+    }
+
+    public void setInzeraty(int inzeraty) {
+        this.inzeraty = inzeraty;
+    }
+
+    public int getHodnotenia() {
+        return hodnotenia;
+    }
+
+    public void setHodnotenia(int hodnotenia) {
+        this.hodnotenia = hodnotenia;
     }
 }

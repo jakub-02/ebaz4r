@@ -17,16 +17,15 @@
             android:id="@+id/fotkaProduktu"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:contentDescription="obrazok"
             android:scaleType="centerCrop"
-            android:src="@drawable/logo"
-            android:contentDescription="obrazok">
-        </ImageView>
+            android:src="@drawable/logo"></ImageView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/fotkaProduktu"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:weightSum="3">
 
             <TextView

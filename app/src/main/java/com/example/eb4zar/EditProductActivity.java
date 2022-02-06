@@ -40,9 +40,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 public class EditProductActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private String zvolenyProdukt;

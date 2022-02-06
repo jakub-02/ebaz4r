@@ -31,9 +31,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class MyProductsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -45,8 +48,11 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
     AlertDialog.Builder builder;
     String uid;
 
+    DatabaseReference reference;
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
+
+    int inzeraty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +138,7 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
                                                                         @Override
                                                                         public void onComplete(@NonNull Task<Void> task) {
                                                                             if (task.isSuccessful()){
+                                                                                updateInzeraty();
                                                                                 Toast.makeText(MyProductsActivity.this, "Inzerát bol vymazaný",
                                                                                         Toast.LENGTH_SHORT).show();
                                                                             }
@@ -175,6 +182,22 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
                 };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
+    }
+
+    private void updateInzeraty(){
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid).child("inzeraty");
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                inzeraty = Integer.parseInt(dataSnapshot.getValue().toString());
+                reference.setValue(inzeraty - 1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     @Override

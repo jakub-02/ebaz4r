@@ -34,8 +34,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -64,6 +67,8 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
     StorageReference fotkyReference;
 
     Uri ImageUri;
+
+    int inzeraty;
 
     private static final int GalleryPick = 1;
 
@@ -211,6 +216,8 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
 
         ulozFotkuStorage();
 
+        updateInzeraty();
+
         Toast.makeText(this, "Inzerát bol vytvorený.", Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(AddNewProductActivity.this, MenuActivity.class);
@@ -258,6 +265,22 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
                         }
                     }
                 });
+            }
+        });
+    }
+
+    private void updateInzeraty(){
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid).child("inzeraty");
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                inzeraty = Integer.parseInt(dataSnapshot.getValue().toString());
+                reference.setValue(inzeraty + 1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
