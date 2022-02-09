@@ -47,7 +47,6 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
 
     String uid;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +91,9 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
 
         sellerReviews.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                startActivity(new Intent(PublicProfileActivity.this, UserRatingsActivity.class));
+                Intent intent = new Intent(PublicProfileActivity.this, UserRatingsActivity.class);
+                intent.putExtra("uidProfil", uid);
+                startActivity(intent);
             }
         });
 

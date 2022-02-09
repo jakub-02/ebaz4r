@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,16 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class RateUserActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -33,8 +44,12 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
     TextInputEditText hodnotenie;
     Button tlacidlo;
     RatingBar ratingBar;
+
+    DatabaseReference reference;
+
     float rateValue;
-    String temp;
+    String uid, uidProfil, saveCurrentDate, saveCurrentTime, hodnotenieRandomKey;
+    int hodnotenia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,36 +79,27 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
 
-        /*
+        //nacitanie uid uzivatela
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            uid = user.getUid();
+        }
+
+        uidProfil = getIntent().getExtras().get("uidProfil").toString();
+
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-
                 rateValue = ratingBar.getRating();
-
-                if (rateValue <=1 && rateValue>0)
-                    rateCount.setText("Bad " +rateValue+ "/5");
-                else if (rateValue <=2 && rateValue>1)
-                    rateCount.setText("Good " +rateValue+ "/5");
-                else if (rateValue <=3 && rateValue>2)
-                    rateCount.setText("OK " +rateValue+ "/5");
-                else if (rateValue <=4 && rateValue>3)
-                    rateCount.setText("Nice " +rateValue+ "/5");
-                else if (rateValue <=5 && rateValue>4)
-                    rateCount.setText("Very Nice " +rateValue+ "/5");
             }
         });
 
         tlacidlo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                temp = rateCount.getText().toString();
-                ukazRate.setText("MenoUzovatela \n" +temp+ "\n" +nazor.getText());
-                nazor.setText("");
-                ratingBar.setRating(0);
-                rateCount.setText("");
+                ulozRating();
             }
-        });*/
+        });
 
     }
 
@@ -159,5 +165,46 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void ulozRating() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMMddyyyy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
+        saveCurrentTime = currentTime.format(calendar.getTime());
+        hodnotenieRandomKey = saveCurrentTime + "" +saveCurrentDate;
+
+        reference = FirebaseDatabase.getInstance().getReference().child("hodnotenia").child(uidProfil + hodnotenieRandomKey);
+
+        reference.child("uzivatel").setValue(uidProfil);
+        reference.child("uzivatelPridal").setValue(uid);
+        reference.child("text").setValue(hodnotenie.getText().toString());
+        reference.child("pocetHviezd").setValue(rateValue);
+        reference.child("datumPridania").setValue(saveCurrentDate);
+        reference.child("casPridania").setValue(saveCurrentTime);
+
+        updateHodnotenia();
+
+        Toast.makeText(this, "Hodnotenie bolo pridané.", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(RateUserActivity.this, UserRatingsActivity.class);
+        intent.putExtra("uidProfil", uidProfil);
+        startActivity(intent);
+    }
+
+    private void updateHodnotenia(){
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uidProfil).child("hodnotenia");
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                hodnotenia = Integer.parseInt(dataSnapshot.getValue().toString());
+                reference.setValue(hodnotenia + 1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }

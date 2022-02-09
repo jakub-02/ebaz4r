@@ -48,14 +48,14 @@
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_margin="13dp"
+                    android:layout_margin="10dp"
                     app:srcCompat="@drawable/logo" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="3"
-                    android:layout_marginHorizontal="10dp">
+                    android:layout_marginHorizontal="15dp">
 
                     <TextView
                         android:id="@+id/productName"
@@ -63,7 +63,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:layout_marginLeft="3dp"
                         android:text="Nazov"
                         android:textColor="@color/black"
                         android:textSize="30sp"
@@ -74,7 +73,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:layout_marginRight="3dp"
                         android:gravity="end"
                         android:textColor="@color/black"
                         android:text="Cena"
@@ -87,7 +85,7 @@
                     android:id="@+id/productDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginHorizontal="15dp"
                     android:layout_marginVertical="10dp"
                     android:text="popis"
                     android:textColor="@color/black"
