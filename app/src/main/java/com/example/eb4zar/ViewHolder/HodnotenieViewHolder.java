@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.eb4zar.Interface.ItemClickListener;
 import com.example.eb4zar.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class HodnotenieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView userName;
     public RatingBar rating;
     public TextView datum;
     public TextView textRecenzie;
+    public CircleImageView fotka;
 
     public ItemClickListener listener;
 
@@ -25,6 +28,7 @@ public class HodnotenieViewHolder extends RecyclerView.ViewHolder implements Vie
         rating = itemView.findViewById(R.id.rating);
         datum = itemView.findViewById(R.id.datum);
         textRecenzie = itemView.findViewById(R.id.textRecenzie);
+        fotka = itemView.findViewById(R.id.fotka);
     }
 
     @Override

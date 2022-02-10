@@ -42,6 +42,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class UserRatingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -54,7 +55,7 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
 
     String uidProfil;
 
-    DatabaseReference reference;
+    DatabaseReference reference, userReference;
 
     RecyclerView recyclerView;
 
@@ -68,6 +69,8 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
         toolbar = findViewById(R.id.toolbar);
         pridaj = findViewById(R.id.pridaj);
         recyclerView = findViewById(R.id.recycler);
+
+        uidProfil = getIntent().getExtras().get("uidProfil").toString();
 
         reference = FirebaseDatabase.getInstance().getReference().child("hodnotenia");
 
@@ -86,8 +89,6 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
-
-        uidProfil = getIntent().getExtras().get("uidProfil").toString();
 
         pridaj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,10 +182,31 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
                 new FirebaseRecyclerAdapter<HodnotenieDetail, HodnotenieViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull HodnotenieViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull HodnotenieDetail model) {
-                        holder.userName.setText(model.getUzivatelPridal());
                         holder.datum.setText(model.getDatumPridania());
                         holder.textRecenzie.setText(model.getText());
                         holder.rating.setRating(model.getPocetHviezd());
+                        userReference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(model.getUzivatelPridal());
+                        userReference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                String meno = snapshot.child("meno").getValue().toString();
+                                String priezvisko = snapshot.child("priezvisko").getValue().toString();
+                                holder.userName.setText(meno + " " + priezvisko);
+
+                                String link = snapshot.child("fotka").getValue().toString();
+                                if (link.equals("default")) {
+
+                                }
+                                else{
+                                    Picasso.get().load(link).into(holder.fotka);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
 
                     @NonNull
