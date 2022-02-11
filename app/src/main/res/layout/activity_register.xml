@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,154 +8,162 @@
     android:background="@color/white"
     tools:context=".RegisterActivity">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-
-    <ImageView
-        android:id="@+id/app_logo"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/logo" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/meno"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/app_logo"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/input"
-        android:drawableLeft="@drawable/ic_osoba"
-        android:drawableTint="@color/colorPrimary"
-        android:drawablePadding="5dp"
-        android:hint="Meno"
-        android:inputType="text"
-        android:padding="20dp"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
 
-    <EditText
-        android:id="@+id/priezvisko"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/meno"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/input"
-        android:drawableLeft="@drawable/ic_osoba"
-        android:drawablePadding="5dp"
-        android:drawableTint="@color/colorPrimary"
-        android:hint="Priezvisko"
-        android:inputType="text"
-        android:padding="20dp"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/menoPriezviskoBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/app_logo"
+            android:weightSum="2">
 
-    <EditText
-        android:id="@+id/mail"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/priezvisko"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/input"
-        android:drawableLeft="@drawable/ic_email"
-        android:drawablePadding="5dp"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="20dp"
-        android:drawableTint="@color/colorPrimary"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/menoBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="5dp"
+                android:hint="Meno"
+                android:layout_below="@+id/app_logo"
+                app:startIconDrawable="@drawable/ic_osoba">
 
-    <EditText
-        android:id="@+id/telefon"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/mail"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/input"
-        android:drawableLeft="@drawable/ic_phone"
-        android:drawablePadding="5dp"
-        android:drawableTint="@color/colorPrimary"
-        android:hint="Telefónne číslo"
-        android:inputType="numberDecimal"
-        android:padding="20dp"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/meno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
 
-    <EditText
-        android:id="@+id/heslo"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/telefon"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/input"
-        android:drawableLeft="@drawable/ic_lock"
-        android:drawablePadding="5dp"
-        android:drawableTint="@color/colorPrimary"
-        android:hint="Heslo"
-        android:inputType="textPassword"
-        android:minEms="8"
-        android:padding="20dp"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/heslo2"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/heslo"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/input"
-        android:drawableLeft="@drawable/ic_lock"
-        android:drawablePadding="5dp"
-        android:drawableTint="@color/colorPrimary"
-        android:hint="Zopakuj heslo"
-        android:inputType="textPassword"
-        android:minEms="8"
-        android:padding="20dp"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/priezviskoBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
+                android:hint="Priezvisko"
+                android:layout_below="@id/menoBox"
+                app:startIconDrawable="@drawable/ic_osoba">
 
-    <Button
-        android:id="@+id/register"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@id/heslo2"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/buttons"
-        android:padding="10dp"
-        android:text="Registrovať sa"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="17sp" />
-</RelativeLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/priezvisko"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/mailBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:hint="Email"
+            android:layout_below="@+id/menoPriezviskoBox"
+            app:startIconDrawable="@drawable/ic_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/telefonBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:hint="Telefónne číslo"
+            android:layout_below="@id/mailBox"
+            app:startIconDrawable="@drawable/ic_phone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/telefon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hesloBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:hint="Heslo"
+            android:layout_below="@id/telefonBox"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/heslo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:minEms="8"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hesloBox2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:hint="Zopakuj heslo"
+            android:layout_below="@id/hesloBox"
+            app:startIconDrawable="@drawable/ic_lock"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/heslo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:minEms="8"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/hesloBox2"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/buttons"
+            android:padding="10dp"
+            android:text="Registrovať sa"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+    </RelativeLayout>
 </ScrollView>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +22,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class MyProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView txtNazovInzeratu;
     public ItemClickListener listener;
-    public Button buttonEdit;
-    public Button buttonDelete;
+    public ImageButton buttonEdit;
+    public ImageButton buttonDelete;
 
     public MyProductViewHolder(View itemView){
         super(itemView);

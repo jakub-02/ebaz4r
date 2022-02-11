@@ -11,7 +11,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/drawable/ic_viac.xml" value="0.2712820512820513" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_add_new_product.xml" value="0.12613981762917933" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_categories.xml" value="0.264" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_edit_product.xml" value="0.12613981762917933" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_edit_product.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_edit_product_acitvity.xml" value="0.22780797101449277" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_main.xml" value="0.12613981762917933" />
@@ -21,10 +21,10 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_public_profile.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_rate_user.xml" value="0.25317028985507245" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_register.xml" value="0.1621376811594203" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_search_product.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_selected_category.xml" value="0.22735507246376813" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_user_ratings.xml" value="0.259375" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_user_ratings.xml" value="0.2553846153846154" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/my_product_layout.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/product_items_layout.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/row_review.xml" value="0.259375" />

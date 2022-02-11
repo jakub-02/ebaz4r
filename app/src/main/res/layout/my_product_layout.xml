@@ -14,31 +14,46 @@
 
         <TextView
             android:id="@+id/nazovInzeratu"
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
             android:padding="5dp"
             android:text="nazov inzeratu"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonEdit"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_toStartOf="@+id/buttonDelete"
             android:layout_toLeftOf="@+id/buttonDelete"
             android:background="@drawable/paper" />
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonDelete"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="5dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/delete" />
 
     </RelativeLayout>

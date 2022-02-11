@@ -59,6 +59,8 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
 
     RecyclerView recyclerView;
 
+    String [] mesiace = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Seb", "Oct", "Nov", "Dec"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,7 +184,7 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
                 new FirebaseRecyclerAdapter<HodnotenieDetail, HodnotenieViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull HodnotenieViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull HodnotenieDetail model) {
-                        holder.datum.setText(model.getDatumPridania());
+                        holder.datum.setText(upravDatum(model.getDatumPridania()));
                         holder.textRecenzie.setText(model.getText());
                         holder.rating.setRating(model.getPocetHviezd());
                         userReference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(model.getUzivatelPridal());
@@ -219,5 +221,50 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
                 };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
+    }
+
+    public String upravDatum(String datum){
+        String mesiac = datum.substring(0,3);
+        String den = datum.substring(3,5);
+        String rok = datum.substring(5);
+
+        if (mesiac.equals(mesiace[0])){
+            mesiac = "01";
+        }
+        else if (mesiac.equals(mesiace[1])){
+            mesiac = "02";
+        }
+        else if (mesiac.equals(mesiace[2])){
+            mesiac = "03";
+        }
+        else if (mesiac.equals(mesiace[3])){
+            mesiac = "04";
+        }
+        else if (mesiac.equals(mesiace[4])){
+            mesiac = "05";
+        }
+        else if (mesiac.equals(mesiace[5])){
+            mesiac = "06";
+        }
+        else if (mesiac.equals(mesiace[6])){
+            mesiac = "07";
+        }
+        else if (mesiac.equals(mesiace[7])){
+            mesiac = "08";
+        }
+        else if (mesiac.equals(mesiace[8])){
+            mesiac = "09";
+        }
+        else if (mesiac.equals(mesiace[9])){
+            mesiac = "10";
+        }
+        else if (mesiac.equals(mesiace[10])){
+            mesiac = "11";
+        }
+        else if (mesiac.equals(mesiace[11])){
+            mesiac = "12";
+        }
+
+        return den + "/" + mesiac + "/" + rok;
     }
 }

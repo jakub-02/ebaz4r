@@ -15,45 +15,44 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/logo" />
 
-    <EditText
-        android:id="@+id/mail"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mailBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_above="@id/heslo"
-        android:layout_marginLeft="15dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/input"
-        android:drawableLeft="@drawable/ic_email"
-        android:drawablePadding="5dp"
-        android:drawableTint="@color/colorPrimary"
+        android:layout_marginHorizontal="15dp"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="20dp"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+        android:layout_above="@+id/hesloBox"
+        app:startIconDrawable="@drawable/ic_email">
 
-    <EditText
-        android:id="@+id/heslo"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/hesloBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_above="@id/rememberBox"
-        android:layout_marginLeft="15dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/input"
-        android:drawableLeft="@drawable/ic_lock"
-        android:drawablePadding="5dp"
-        android:drawableTint="@color/colorPrimary"
+        android:layout_marginHorizontal="15dp"
         android:hint="Heslo"
-        android:inputType="textPassword"
-        android:padding="20dp"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+        android:layout_above="@id/rememberBox"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:endIconMode="password_toggle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/heslo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
         android:id="@+id/rememberBox"
@@ -82,6 +81,5 @@
         android:text="Prihlásiť sa"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="17sp"
-        />
+        android:textSize="17sp" />
 </RelativeLayout>
