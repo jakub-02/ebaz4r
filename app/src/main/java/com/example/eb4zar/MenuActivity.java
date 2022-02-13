@@ -22,7 +22,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.eb4zar.ViewHolder.KategoriaAdapter;
 import com.example.eb4zar.ViewHolder.ProductViewHolder;
+import com.example.eb4zar.model.Kategoria;
 import com.example.eb4zar.model.ProductDetail;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -31,6 +33,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import io.paperdb.Paper;
 
@@ -42,7 +46,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     Menu menu;
 
     private DatabaseReference ProductsRef;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView, recycler_kategorie;
+
+
+    ArrayList<Kategoria> kategoriaList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +79,24 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
 
+        kategoriaList.add(new Kategoria("Oblečenie", R.drawable.dress));
+        kategoriaList.add(new Kategoria("Zvieratá", R.drawable.cat));
+        kategoriaList.add(new Kategoria("Elektronika", R.drawable.electronics));
+        kategoriaList.add(new Kategoria("Autá", R.drawable.car));
+        kategoriaList.add(new Kategoria("Knihy", R.drawable.book));
+        kategoriaList.add(new Kategoria("Hudba", R.drawable.guitar));
+        kategoriaList.add(new Kategoria("Nábytok", R.drawable.sofa));
+        kategoriaList.add(new Kategoria("Šport", R.drawable.sport));
+        kategoriaList.add(new Kategoria("Ostatné", R.drawable.suggestion));
+
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(this));
+
+        recycler_kategorie = findViewById(R.id.recycler_kategorie);
+        KategoriaAdapter adapter = new KategoriaAdapter(kategoriaList);
+        recycler_kategorie.setAdapter(adapter);
+        recycler_kategorie.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
     }
 
     @Override

@@ -78,6 +78,7 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
+        getSupportActionBar().setTitle("Hodnotenie užívateľa");
 
         //nacitanie uid uzivatela
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
