@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PublicProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -45,7 +48,8 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
 
     ImageView userPicture;
 
-    String uid;
+    String uid, uidProfil;
+    View headerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,18 +85,25 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
 
-        uid = getIntent().getExtras().get("uid").toString();
+        headerView = navigationView.getHeaderView(0);
 
-        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            uid = user.getUid();
+        }
+
+        uidProfil = getIntent().getExtras().get("uid").toString();
+
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uidProfil);
         fotkyReference = FirebaseStorage.getInstance().getReference().child("profiloveObrazky");
 
         nacitajData();
-        nacitajFotku();
+        nacitajDataHeader();
 
         sellerReviews.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(PublicProfileActivity.this, UserRatingsActivity.class);
-                intent.putExtra("uidProfil", uid);
+                intent.putExtra("uidProfil", uidProfil);
                 startActivity(intent);
             }
         });
@@ -192,6 +203,12 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
                 String hodnotenia = snapshot.child("hodnotenia").getValue().toString();
                 String inzeraty = snapshot.child("inzeraty").getValue().toString();
 
+                String link = snapshot.child("fotka").getValue().toString();
+                if (link.equals("default")) {
+                }
+                else{
+                    Picasso.get().load(link).into(userPicture);
+                }
                 sellerMail.setText(mail);
                 sellerPhone.setText(phone);
                 userName.setText(name + " " + surname);
@@ -206,11 +223,18 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
         });
     }
 
-    private void nacitajFotku() {
+    public void nacitajDataHeader() {
         reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+        CircleImageView userPicture = headerView.findViewById(R.id.userPicture);
+        TextView userName = headerView.findViewById(R.id.userName);
+        TextView userMail = headerView.findViewById(R.id.userMail);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String mail = snapshot.child("mail").getValue().toString();
+                String name = snapshot.child("meno").getValue().toString();
+                String surname = snapshot.child("priezvisko").getValue().toString();
+
                 String link = snapshot.child("fotka").getValue().toString();
                 if (link.equals("default")) {
 
@@ -218,6 +242,9 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
                 else{
                     Picasso.get().load(link).into(userPicture);
                 }
+
+                userMail.setText(mail);
+                userName.setText(name + " " + surname);
             }
 
             @Override

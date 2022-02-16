@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp"
+    android:background="@color/colorAccent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/userPicture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/person"/>
+
+    <TextView
+        android:id="@+id/userName"
+        app:layout_constraintTop_toBottomOf="@id/userPicture"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Meno Priezvisko"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/userMail"
+        app:layout_constraintTop_toBottomOf="@id/userName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="adresa@gmail.com"
+        android:textColor="@color/white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

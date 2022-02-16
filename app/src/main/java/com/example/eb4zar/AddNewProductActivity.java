@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -42,9 +43,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AddNewProductActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -65,6 +69,8 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
 
     DatabaseReference reference;
     StorageReference fotkyReference;
+
+    View headerView;
 
     Uri ImageUri;
 
@@ -102,6 +108,7 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
+        headerView = navigationView.getHeaderView(0);
 
         //nacitanie uid uzivatela
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -141,6 +148,8 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
                 skontrolujPrazndePolia();
             }
         });
+
+        nacitajDataHeader();
     }
 
     private void OtvorGaleriu() {
@@ -348,5 +357,34 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         drawerLayout.closeDrawer(GravityCompat.START); return true;
     }
 
+    public void nacitajDataHeader() {
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+        CircleImageView userPicture = headerView.findViewById(R.id.userPicture);
+        TextView userName = headerView.findViewById(R.id.userName);
+        TextView userMail = headerView.findViewById(R.id.userMail);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String mail = snapshot.child("mail").getValue().toString();
+                String name = snapshot.child("meno").getValue().toString();
+                String surname = snapshot.child("priezvisko").getValue().toString();
 
+                String link = snapshot.child("fotka").getValue().toString();
+                if (link.equals("default")) {
+
+                }
+                else{
+                    Picasso.get().load(link).into(userPicture);
+                }
+
+                userMail.setText(mail);
+                userName.setText(name + " " + surname);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 }

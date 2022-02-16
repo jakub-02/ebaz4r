@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,8 +17,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.eb4zar.model.Kategoria;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CategoriesActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -26,6 +39,12 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
     Toolbar toolbar;
     Menu menu;
     ImageView auta, elektronika, hudba, knihy, nabytok, oblecenie, ostatne, sport, zvierata;
+
+    String uid;
+
+    View headerView;
+
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +80,15 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
+
+        headerView = navigationView.getHeaderView(0);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            uid = user.getUid();
+        }
+
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
 
         auta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,6 +171,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
                 startActivity(intent);
             }
         });
+
+        nacitajDataHeader();
     }
 
     @Override
@@ -207,4 +237,34 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
         }
         drawerLayout.closeDrawer(GravityCompat.START); return true;
     }
+
+    public void nacitajDataHeader() {
+        CircleImageView userPicture = headerView.findViewById(R.id.userPicture);
+        TextView userName = headerView.findViewById(R.id.userName);
+        TextView userMail = headerView.findViewById(R.id.userMail);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String mail = snapshot.child("mail").getValue().toString();
+                String name = snapshot.child("meno").getValue().toString();
+                String surname = snapshot.child("priezvisko").getValue().toString();
+
+                String link = snapshot.child("fotka").getValue().toString();
+                if (link.equals("default")) {
+
+                }
+                else{
+                    Picasso.get().load(link).into(userPicture);
+                }
+
+                userMail.setText(mail);
+                userName.setText(name + " " + surname);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+}
 }

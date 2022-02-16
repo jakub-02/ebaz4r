@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eb4zar.ViewHolder.MyProductViewHolder;
@@ -37,6 +38,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyProductsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,6 +55,8 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
     DatabaseReference reference;
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
+
+    View headerView;
 
     int inzeraty;
 
@@ -87,11 +93,15 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
 
+        headerView = navigationView.getHeaderView(0);
+
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(this));
 
         builder = new AlertDialog.Builder(this);
+
+        nacitajDataHeader();
     }
 
     @Override
@@ -260,5 +270,36 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void nacitajDataHeader() {
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+        CircleImageView userPicture = headerView.findViewById(R.id.userPicture);
+        TextView userName = headerView.findViewById(R.id.userName);
+        TextView userMail = headerView.findViewById(R.id.userMail);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String mail = snapshot.child("mail").getValue().toString();
+                String name = snapshot.child("meno").getValue().toString();
+                String surname = snapshot.child("priezvisko").getValue().toString();
+
+                String link = snapshot.child("fotka").getValue().toString();
+                if (link.equals("default")) {
+
+                }
+                else{
+                    Picasso.get().load(link).into(userPicture);
+                }
+
+                userMail.setText(mail);
+                userName.setText(name + " " + surname);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

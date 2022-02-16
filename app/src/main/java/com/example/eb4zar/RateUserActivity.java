@@ -34,6 +34,8 @@ import com.squareup.picasso.Picasso;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class RateUserActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
@@ -50,6 +52,8 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
     float rateValue;
     String uid, uidProfil, saveCurrentDate, saveCurrentTime, hodnotenieRandomKey;
     int hodnotenia;
+
+    View headerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,8 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
         getSupportActionBar().setTitle("Hodnotenie užívateľa");
 
+        headerView = navigationView.getHeaderView(0);
+
         //nacitanie uid uzivatela
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -102,6 +108,7 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
             }
         });
 
+        nacitajDataHeader();
     }
 
     @Override
@@ -205,6 +212,37 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    public void nacitajDataHeader() {
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+        CircleImageView userPicture = headerView.findViewById(R.id.userPicture);
+        TextView userName = headerView.findViewById(R.id.userName);
+        TextView userMail = headerView.findViewById(R.id.userMail);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String mail = snapshot.child("mail").getValue().toString();
+                String name = snapshot.child("meno").getValue().toString();
+                String surname = snapshot.child("priezvisko").getValue().toString();
+
+                String link = snapshot.child("fotka").getValue().toString();
+                if (link.equals("default")) {
+
+                }
+                else{
+                    Picasso.get().load(link).into(userPicture);
+                }
+
+                userMail.setText(mail);
+                userName.setText(name + " " + surname);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

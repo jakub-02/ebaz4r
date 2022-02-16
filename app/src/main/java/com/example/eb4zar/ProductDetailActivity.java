@@ -20,12 +20,15 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProductDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -37,11 +40,12 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
     Menu menu;
 
     ImageView imageView;
+    View headerView;
     TextView productName, productDesc, productPrice, sellerMail, sellerPhone, sellerName;
 
     DatabaseReference reference, sellerReference;
 
-    String seller;
+    String seller, uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +85,13 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
 
+        headerView = navigationView.getHeaderView(0);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            uid = user.getUid();
+        }
+
         sellerName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +121,7 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
 
         nacitajFotku();
         nacitajData();
+        nacitajDataHeader();
     }
 
     @Override
@@ -226,6 +238,37 @@ public class ProductDetailActivity extends AppCompatActivity implements Navigati
 
                     }
                 });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void nacitajDataHeader() {
+        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+        CircleImageView userPicture = headerView.findViewById(R.id.userPicture);
+        TextView userName = headerView.findViewById(R.id.userName);
+        TextView userMail = headerView.findViewById(R.id.userMail);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String mail = snapshot.child("mail").getValue().toString();
+                String name = snapshot.child("meno").getValue().toString();
+                String surname = snapshot.child("priezvisko").getValue().toString();
+
+                String link = snapshot.child("fotka").getValue().toString();
+                if (link.equals("default")) {
+
+                }
+                else{
+                    Picasso.get().load(link).into(userPicture);
+                }
+
+                userMail.setText(mail);
+                userName.setText(name + " " + surname);
             }
 
             @Override
