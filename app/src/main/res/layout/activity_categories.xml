@@ -43,332 +43,371 @@
         />
 
         <LinearLayout
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            android:id="@+id/prvaRada"
-            android:layout_width="0dp"
+            android:id="@+id/group1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            >
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp"
+            android:weightSum="3"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginHorizontal="10dp"
+                android:id="@+id/oblecenie"
                 android:layout_weight="1"
-                >
+                android:layout_width="0dp"
+                android:layout_height="130dp"
+                android:layout_marginHorizontal="10dp"
+                app:cardElevation="20dp"
+                app:cardCornerRadius="15dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/oblecenie"
-                        android:layout_width="75dp"
+                        android:id="@+id/fotkaKategorie"
+                        android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
-                        app:srcCompat="@drawable/dress" />
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/dress" />
 
                     <TextView
-                        android:textAlignment="center"
+                        android:id="@+id/textKategorie"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/fotkaKategorie"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
                         android:text="Oblečenie"
-                        android:layout_below="@+id/oblecenie"
-                        android:layout_height="30dp"
-                        android:layout_width="100dp"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18dp"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/zvierata"
+                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_height="130dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_weight="1">
+                app:cardElevation="20dp"
+                app:cardCornerRadius="15dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/zvierata"
-                        android:layout_width="75dp"
+                        android:id="@+id/fotkaKategorie"
+                        android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
-                        app:srcCompat="@drawable/cat" />
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/cat" />
 
                     <TextView
-                        android:textAlignment="center"
+                        android:id="@+id/textKategorie"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/fotkaKategorie"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
                         android:text="Zvieratá"
-                        android:layout_below="@+id/zvierata"
-                        android:layout_height="30dp"
-                        android:layout_width="100dp"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18dp"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/elektronika"
+                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_height="130dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_weight="1">
+                app:cardElevation="20dp"
+                app:cardCornerRadius="15dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/elektronika"
-                        android:layout_width="75dp"
+                        android:id="@+id/fotkaKategorie"
+                        android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
-                        app:srcCompat="@drawable/videogames" />
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/electronics" />
 
                     <TextView
-                        android:textAlignment="center"
+                        android:id="@+id/textKategorie"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/fotkaKategorie"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
                         android:text="Elektronika"
-                        android:layout_below="@+id/elektronika"
-                        android:layout_height="30dp"
-                        android:layout_width="100dp"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18dp"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
         <LinearLayout
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/prvaRada"
-            android:id="@+id/druhaRada"
-            android:layout_width="0dp"
+            android:id="@+id/group2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            >
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp"
+            android:weightSum="3"
+            app:layout_constraintTop_toBottomOf="@+id/group1">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/auta"
+                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_height="130dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_weight="1">
+                app:cardElevation="20dp"
+                app:cardCornerRadius="15dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/auta"
-                        android:layout_width="75dp"
+                        android:id="@+id/fotkaKategorie"
+                        android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
-                        app:srcCompat="@drawable/car" />
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/car" />
 
                     <TextView
-                        android:textAlignment="center"
+                        android:id="@+id/textKategorie"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/fotkaKategorie"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
                         android:text="Autá"
-                        android:layout_below="@+id/auta"
-                        android:layout_height="30dp"
-                        android:layout_width="100dp"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18dp"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/knihy"
+                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_height="130dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_weight="1">
+                app:cardElevation="20dp"
+                app:cardCornerRadius="15dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/knihy"
-                        android:layout_width="75dp"
+                        android:id="@+id/fotkaKategorie"
+                        android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
-                        app:srcCompat="@drawable/book" />
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/book" />
 
                     <TextView
-                        android:textAlignment="center"
+                        android:id="@+id/textKategorie"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/fotkaKategorie"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
                         android:text="Knihy"
-                        android:layout_below="@+id/knihy"
-                        android:layout_height="30dp"
-                        android:layout_width="100dp"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18dp"/>
-
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/hudba"
+                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_height="130dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_weight="1">
+                app:cardElevation="20dp"
+                app:cardCornerRadius="15dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/hudba"
-                        android:layout_width="75dp"
+                        android:id="@+id/fotkaKategorie"
+                        android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
-                        app:srcCompat="@drawable/guitar" />
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/guitar" />
 
                     <TextView
-                        android:textAlignment="center"
-                        android:text="Hudba"
-                        android:layout_below="@+id/hudba"
-                        android:layout_height="30dp"
-                        android:layout_width="100dp"
+                        android:id="@+id/textKategorie"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/fotkaKategorie"
                         android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/roboto_medium"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18dp"/>
+                        android:padding="5dp"
+                        android:text="Hudba"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
         <LinearLayout
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/druhaRada"
-            android:id="@+id/tretiaRada"
-            android:layout_width="0dp"
+            android:id="@+id/group3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            >
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:weightSum="3"
+            app:layout_constraintTop_toBottomOf="@+id/group2">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/nabytok"
+                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_height="130dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_weight="1">
+                app:cardElevation="20dp"
+                app:cardCornerRadius="15dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/nabytok"
-                        android:layout_width="75dp"
+                        android:id="@+id/fotkaKategorie"
+                        android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
-                        app:srcCompat="@drawable/sofa" />
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/sofa" />
 
                     <TextView
-                        android:textAlignment="center"
+                        android:id="@+id/textKategorie"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/fotkaKategorie"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
                         android:text="Nábytok"
-                        android:layout_below="@+id/nabytok"
-                        android:layout_height="30dp"
-                        android:layout_width="100dp"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18dp"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/sport"
+                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_height="130dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_weight="1">
+                app:cardElevation="20dp"
+                app:cardCornerRadius="15dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/sport"
-                        android:layout_width="75dp"
+                        android:id="@+id/fotkaKategorie"
+                        android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
-                        app:srcCompat="@drawable/sport" />
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/sport" />
 
                     <TextView
-                        android:textAlignment="center"
+                        android:id="@+id/textKategorie"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/fotkaKategorie"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
                         android:text="Šport"
-                        android:layout_below="@+id/sport"
-                        android:layout_height="30dp"
-                        android:layout_width="100dp"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18dp"/>
-
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/ostatne"
+                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
+                android:layout_height="130dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_weight="1">
+                app:cardElevation="20dp"
+                app:cardCornerRadius="15dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/ostatne"
-                        android:layout_width="75dp"
+                        android:id="@+id/fotkaKategorie"
+                        android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
-                        app:srcCompat="@drawable/suggestion" />
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/suggestion" />
 
                     <TextView
-                        android:textAlignment="center"
-                        android:text="Ostatné"
-                        android:layout_below="@+id/ostatne"
-                        android:layout_height="30dp"
-                        android:layout_width="100dp"
+                        android:id="@+id/textKategorie"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/fotkaKategorie"
                         android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/roboto_medium"
                         android:gravity="center_horizontal"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18dp"/>
+                        android:padding="5dp"
+                        android:text="Ostatné"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimary" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+        
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

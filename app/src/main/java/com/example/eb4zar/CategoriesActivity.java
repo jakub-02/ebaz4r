@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -38,7 +39,7 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
-    ImageView auta, elektronika, hudba, knihy, nabytok, oblecenie, ostatne, sport, zvierata;
+    CardView auta, elektronika, hudba, knihy, nabytok, oblecenie, ostatne, sport, zvierata;
 
     String uid;
 
@@ -54,6 +55,7 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+
         auta = findViewById(R.id.auta);
         elektronika = findViewById(R.id.elektronika);
         hudba = findViewById(R.id.hudba);
@@ -89,6 +91,7 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
         }
 
         reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+
 
         auta.setOnClickListener(new View.OnClickListener() {
             @Override
