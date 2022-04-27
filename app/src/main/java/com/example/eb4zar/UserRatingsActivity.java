@@ -96,6 +96,10 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
             uid = user.getUid();
         }
 
+        if (uidProfil.equals(uid)){
+            pridaj.setVisibility(View.INVISIBLE);
+        }
+
         pridaj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,7 +152,8 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(UserRatingsActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(UserRatingsActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }

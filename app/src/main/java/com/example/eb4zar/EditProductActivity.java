@@ -330,7 +330,8 @@ public class EditProductActivity extends AppCompatActivity implements Navigation
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(EditProductActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(EditProductActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }

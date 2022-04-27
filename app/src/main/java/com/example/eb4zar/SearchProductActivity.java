@@ -88,7 +88,7 @@ public class SearchProductActivity extends AppCompatActivity implements Navigati
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(SearchProductActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(SearchProductActivity.this, EditProfileActivity.class);
                 startActivity(intent);
                 break;
             }

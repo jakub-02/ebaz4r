@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,6 +48,7 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
     LinearLayout sellerReviews, sellerProducts;
 
     ImageView userPicture;
+    ImageButton settings;
 
     String uid, uidProfil;
     View headerView;
@@ -68,6 +70,7 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
         userPicture = findViewById(R.id.userPicture);
         pocetInzeratov = findViewById(R.id.pocetInzeratov);
         pocetHodnoteni = findViewById(R.id.pocetHodnoteni);
+        settings = findViewById(R.id.settings);
 
         setSupportActionBar(toolbar);
 
@@ -94,16 +97,28 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
 
         uidProfil = getIntent().getExtras().get("uid").toString();
 
+        if (!uidProfil.equals(uid)){
+            settings.setVisibility(View.INVISIBLE);
+        }
+
         reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uidProfil);
         fotkyReference = FirebaseStorage.getInstance().getReference().child("profiloveObrazky");
 
         nacitajData();
         nacitajDataHeader();
 
-        sellerReviews.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        sellerReviews.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 Intent intent = new Intent(PublicProfileActivity.this, UserRatingsActivity.class);
                 intent.putExtra("uidProfil", uidProfil);
+                startActivity(intent);
+            }
+        });
+
+        sellerProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PublicProfileActivity.this, MyProductsActivity.class);
                 startActivity(intent);
             }
         });
@@ -122,6 +137,15 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + sellerPhone.getText().toString()));
+                startActivity(intent);
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PublicProfileActivity.this, EditProfileActivity.class);
+                intent.putExtra("uidProfil", uidProfil);
                 startActivity(intent);
             }
         });
@@ -165,7 +189,8 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(PublicProfileActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(PublicProfileActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }
@@ -205,8 +230,7 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
 
                 String link = snapshot.child("fotka").getValue().toString();
                 if (link.equals("default")) {
-                }
-                else{
+                } else {
                     Picasso.get().load(link).into(userPicture);
                 }
                 sellerMail.setText(mail);
@@ -238,8 +262,7 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
                 String link = snapshot.child("fotka").getValue().toString();
                 if (link.equals("default")) {
 
-                }
-                else{
+                } else {
                     Picasso.get().load(link).into(userPicture);
                 }
 

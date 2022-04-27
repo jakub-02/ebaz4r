@@ -35,22 +35,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.HashMap;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class EditProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     Menu menu;
-    String uid, email;
-    TextView emailProfil;
+    String uid;
     ImageView userProfil;
     Button save;
 
@@ -72,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_edit_profile);
 
         drawerLayout = findViewById(R.id.drawer_layout1);
         navigationView = findViewById(R.id.nav_view1);
@@ -81,7 +78,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         menoProfil = findViewById(R.id.menoProfil);
         priezviskoProfil = findViewById(R.id.priezviskoProfil);
         telefonProfil = findViewById(R.id.telefonProfil);
-        emailProfil = findViewById(R.id.emailProfil);
         userProfil = findViewById(R.id.userProfil);
         save = findViewById(R.id.save);
 
@@ -107,8 +103,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             uid = user.getUid();
-            email = user.getEmail();
-            emailProfil.setText(email);
         }
 
         reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
@@ -122,6 +116,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             @Override
             public void onClick(View v) {
                 update(v);
+                Intent intent = new Intent(EditProfileActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
+                startActivity(intent);
             }
         });
 
@@ -190,25 +187,25 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         switch (item.getItemId()){
 
             case (R.id.nav_home): {
-                Intent intent = new Intent(ProfileActivity.this, MenuActivity.class);
+                Intent intent = new Intent(EditProfileActivity.this, MenuActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_categories):{
-                Intent intent = new Intent(ProfileActivity.this, CategoriesActivity.class);
+                Intent intent = new Intent(EditProfileActivity.this, CategoriesActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_search):{
-                Intent intent = new Intent(ProfileActivity.this, SearchProductActivity.class);
+                Intent intent = new Intent(EditProfileActivity.this, SearchProductActivity.class);
                 startActivity(intent);
                 break;
             }
 
             case (R.id.nav_add):{
-                Intent intent = new Intent(ProfileActivity.this, AddNewProductActivity.class);
+                Intent intent = new Intent(EditProfileActivity.this, AddNewProductActivity.class);
                 startActivity(intent);
                 break;
             }
@@ -218,7 +215,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             }
 
             case (R.id.nav_myProducts):{
-                Intent intent = new Intent(ProfileActivity.this, MyProductsActivity.class);
+                Intent intent = new Intent(EditProfileActivity.this, MyProductsActivity.class);
                 startActivity(intent);
                 break;
             }
@@ -229,9 +226,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 editor.putString("remember", "false");
                 editor.apply();
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
                 startActivity(intent);
-                Toast.makeText(ProfileActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfileActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
                 break;
             }
         }
@@ -290,7 +287,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             public void onFailure(@NonNull Exception e)
             {
                 String message = e.toString();
-                Toast.makeText(ProfileActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfileActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override

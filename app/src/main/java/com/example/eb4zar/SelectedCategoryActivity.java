@@ -184,7 +184,8 @@ public class SelectedCategoryActivity extends AppCompatActivity implements Navig
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(SelectedCategoryActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(SelectedCategoryActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }

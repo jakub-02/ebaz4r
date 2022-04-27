@@ -49,7 +49,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".EditProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity

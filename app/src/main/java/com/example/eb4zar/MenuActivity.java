@@ -196,7 +196,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(MenuActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(MenuActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }

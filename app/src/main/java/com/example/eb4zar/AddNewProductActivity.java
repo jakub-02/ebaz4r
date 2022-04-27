@@ -331,7 +331,8 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(AddNewProductActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(AddNewProductActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }

@@ -148,7 +148,8 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(RateUserActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(RateUserActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }

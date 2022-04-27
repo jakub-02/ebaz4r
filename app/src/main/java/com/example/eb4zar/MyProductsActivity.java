@@ -247,7 +247,8 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(MyProductsActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(MyProductsActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }

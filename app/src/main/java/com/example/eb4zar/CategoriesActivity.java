@@ -215,7 +215,8 @@ public class CategoriesActivity extends AppCompatActivity implements NavigationV
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(CategoriesActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(CategoriesActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }
