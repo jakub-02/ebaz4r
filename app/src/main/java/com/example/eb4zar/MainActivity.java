@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        regTlacidlo = findViewById(R.id.main_button2);
-        joinTlacidlo = findViewById(R.id.main_button);
+        regTlacidlo = findViewById(R.id.register);
+        joinTlacidlo = findViewById(R.id.login);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
