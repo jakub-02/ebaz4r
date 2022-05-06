@@ -176,6 +176,11 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         String popis = popisText.getText().toString();
         String cena = cenaText.getText().toString();
 
+        int nazovLength = nazov.length();
+        int popisLength = popis.length();
+        int cenaLength = cena.length();
+
+
         if(TextUtils.isEmpty(nazov) && TextUtils.isEmpty(popis) && TextUtils.isEmpty(cena)){
             Toast.makeText(this, "Vyššie uvedené polia nesmú byť prázdne.", Toast.LENGTH_SHORT).show();
         }
@@ -187,6 +192,15 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         }
         else if (TextUtils.isEmpty(cena)){
             Toast.makeText(this, "Zadajte cenu inzerátu!", Toast.LENGTH_SHORT).show();
+        }
+        else if (nazovLength > 25){
+            Toast.makeText(this, "Názov nesmie mať viac ako 25 znakov.", Toast.LENGTH_SHORT).show();
+        }
+        else if (popisLength > 250){
+            Toast.makeText(this, "Popis nesmie mať viac ako 250 znakov.", Toast.LENGTH_SHORT).show();
+        }
+        else if (cenaLength > 10){
+            Toast.makeText(this, "Cena nesmie mať viac ako 10 znakov.", Toast.LENGTH_SHORT).show();
         }
 
         else{

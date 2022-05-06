@@ -177,31 +177,37 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
     }
 
     public void ulozRating() {
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat currentDate = new SimpleDateFormat("MMMddyyyy");
-        saveCurrentDate = currentDate.format(calendar.getTime());
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
-        saveCurrentTime = currentTime.format(calendar.getTime());
-        hodnotenieRandomKey = saveCurrentTime + "" +saveCurrentDate;
+        String hod = hodnotenie.getText().toString();
+        if (hod.length() > 250) {
+            Toast.makeText(this, "Popis nesmie mať viac ako 250 znakov.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat currentDate = new SimpleDateFormat("MMMddyyyy");
+            saveCurrentDate = currentDate.format(calendar.getTime());
+            SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
+            saveCurrentTime = currentTime.format(calendar.getTime());
+            hodnotenieRandomKey = saveCurrentTime + "" + saveCurrentDate;
 
-        reference = FirebaseDatabase.getInstance().getReference().child("hodnotenia").child(uidProfil + hodnotenieRandomKey);
+            reference = FirebaseDatabase.getInstance().getReference().child("hodnotenia").child(uidProfil + hodnotenieRandomKey);
 
-        reference.child("uzivatel").setValue(uidProfil);
-        reference.child("uzivatelPridal").setValue(uid);
-        reference.child("text").setValue(hodnotenie.getText().toString());
-        reference.child("pocetHviezd").setValue(rateValue);
-        reference.child("datumPridania").setValue(saveCurrentDate);
-        reference.child("casPridania").setValue(saveCurrentTime);
+            reference.child("uzivatel").setValue(uidProfil);
+            reference.child("uzivatelPridal").setValue(uid);
+            reference.child("text").setValue(hodnotenie.getText().toString());
+            reference.child("pocetHviezd").setValue(rateValue);
+            reference.child("datumPridania").setValue(saveCurrentDate);
+            reference.child("casPridania").setValue(saveCurrentTime);
 
-        updateHodnotenia();
+            updateHodnotenia();
 
-        Toast.makeText(this, "Hodnotenie bolo pridané.", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(RateUserActivity.this, UserRatingsActivity.class);
-        intent.putExtra("uidProfil", uidProfil);
-        startActivity(intent);
+            Toast.makeText(this, "Hodnotenie bolo pridané.", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(RateUserActivity.this, UserRatingsActivity.class);
+            intent.putExtra("uidProfil", uidProfil);
+            startActivity(intent);
+        }
     }
 
-    private void updateHodnotenia(){
+    private void updateHodnotenia() {
         reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uidProfil).child("hodnotenia");
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -232,8 +238,7 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
                 String link = snapshot.child("fotka").getValue().toString();
                 if (link.equals("default")) {
 
-                }
-                else{
+                } else {
                     Picasso.get().load(link).into(userPicture);
                 }
 

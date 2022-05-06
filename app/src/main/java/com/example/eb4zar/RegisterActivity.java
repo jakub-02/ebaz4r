@@ -67,9 +67,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void vytvorUcet() {
         String meno = menoEdit.getText().toString();
+        int menoLength = meno.length();
         String priezvisko = priezviskoEdit.getText().toString();
+        int priezviskoLength = priezvisko.length();
         String mail = mailEdit.getText().toString();
         String telefon = telefonEdit.getText().toString();
+        int telefonLength = telefon.length();
         String heslo = hesloEdit.getText().toString();
         String heslo2 = heslo2Edit.getText().toString();
         String fotka = "default";
@@ -106,6 +109,15 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else if (heslo2.length() < 8){
             Toast.makeText(this, "Musíš zadať minimálne 8 znakov", Toast.LENGTH_SHORT).show();
+        }
+        else if (menoLength > 25){
+            Toast.makeText(this, "Meno nesmie mať viac ako 25 znakov.", Toast.LENGTH_SHORT).show();
+        }
+        else if (priezviskoLength > 25){
+            Toast.makeText(this, "Priezvisko nesmie mať viac ako 25 znakov.", Toast.LENGTH_SHORT).show();
+        }
+        else if (telefonLength > 10){
+            Toast.makeText(this, "Telefón nesmie mať viac ako 10 znakov.", Toast.LENGTH_SHORT).show();
         }
 
         else{

@@ -54,7 +54,7 @@ public class EditProductActivity extends AppCompatActivity implements Navigation
     Menu menu;
 
     ImageView obrazok;
-    TextInputEditText nazov, popis, cena;
+    TextInputEditText nazovText, popisText, cenaText;
     AutoCompleteTextView kategoria;
     Button uprav;
 
@@ -88,9 +88,9 @@ public class EditProductActivity extends AppCompatActivity implements Navigation
         obrazok = findViewById(R.id.obrazokProduktu);
         kategoria = findViewById(R.id.kategoria);
         uprav = findViewById(R.id.uprav);
-        nazov = findViewById(R.id.nazovText);
-        popis = findViewById(R.id.popisText);
-        cena = findViewById(R.id.cenaText);
+        nazovText = findViewById(R.id.nazovText);
+        popisText = findViewById(R.id.popisText);
+        cenaText = findViewById(R.id.cenaText);
 
         setSupportActionBar(toolbar);
 
@@ -137,8 +137,6 @@ public class EditProductActivity extends AppCompatActivity implements Navigation
             @Override
             public void onClick(View v) {
                 skontrolujPrazndePolia();
-                Intent intent = new Intent(EditProductActivity.this, MyProductsActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -194,9 +192,9 @@ public class EditProductActivity extends AppCompatActivity implements Navigation
                 String price = snapshot.child("cena").getValue().toString();
                 String cat = snapshot.child("kategoria").getValue().toString();
 
-                nazov.setText(name);
-                popis.setText(desc);
-                cena.setText(price);
+                nazovText.setText(name);
+                popisText.setText(desc);
+                cenaText.setText(price);
                 kategoriaText = cat;
                 kategoria.setText(kategoriaText);
 
@@ -213,21 +211,35 @@ public class EditProductActivity extends AppCompatActivity implements Navigation
     }
 
     private void skontrolujPrazndePolia(){
-        String nazovText = nazov.getText().toString();
-        String popisText = popis.getText().toString();
-        String cenaText = cena.getText().toString();
+        String nazov = nazovText.getText().toString();
+        String popis = popisText.getText().toString();
+        String cena = cenaText.getText().toString();
 
-        if(TextUtils.isEmpty(nazovText) && TextUtils.isEmpty(popisText) && TextUtils.isEmpty(cenaText)){
+        int nazovLength = nazov.length();
+        int popisLength = popis.length();
+        int cenaLength = cena.length();
+
+
+        if(TextUtils.isEmpty(nazov) && TextUtils.isEmpty(popis) && TextUtils.isEmpty(cena)){
             Toast.makeText(this, "Vyššie uvedené polia nesmú byť prázdne.", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(nazovText)){
+        else if (TextUtils.isEmpty(nazov)){
             Toast.makeText(this, "Zadajte názov inzerátu!", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(popisText)){
+        else if (TextUtils.isEmpty(popis)){
             Toast.makeText(this, "Zadajte popis inzerátu!", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(cenaText)){
+        else if (TextUtils.isEmpty(cena)){
             Toast.makeText(this, "Zadajte cenu inzerátu!", Toast.LENGTH_SHORT).show();
+        }
+        else if (nazovLength > 25){
+            Toast.makeText(this, "Názov nesmie mať viac ako 25 znakov.", Toast.LENGTH_SHORT).show();
+        }
+        else if (popisLength > 250){
+            Toast.makeText(this, "Popis nesmie mať viac ako 250 znakov.", Toast.LENGTH_SHORT).show();
+        }
+        else if (cenaLength > 10){
+            Toast.makeText(this, "Cena nesmie mať viac ako 10 znakov.", Toast.LENGTH_SHORT).show();
         }
 
         else{
@@ -279,18 +291,21 @@ public class EditProductActivity extends AppCompatActivity implements Navigation
     }
 
     public void update() {
-        reference.child("nazov").setValue(nazov.getText().toString());
+        reference.child("nazov").setValue(nazovText.getText().toString());
 
         reference.child("kategoria").setValue(kategoriaText);
 
-        reference.child("popis").setValue(popis.getText().toString());
+        reference.child("popis").setValue(popisText.getText().toString());
 
-        reference.child("cena").setValue(cena.getText().toString());
+        reference.child("cena").setValue(cenaText.getText().toString());
 
         if (fotka){
         ulozFotkuStorage();}
 
         Toast.makeText(this, "Inzerát bol upravený.", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(EditProductActivity.this, MyProductsActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -358,7 +373,7 @@ public class EditProductActivity extends AppCompatActivity implements Navigation
     }
 
     public void nacitajDataHeader() {
-        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
         CircleImageView userPicture = headerView.findViewById(R.id.userPicture);
         TextView userName = headerView.findViewById(R.id.userName);
         TextView userMail = headerView.findViewById(R.id.userMail);

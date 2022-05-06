@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -116,9 +117,6 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
             @Override
             public void onClick(View v) {
                 update(v);
-                Intent intent = new Intent(EditProfileActivity.this, PublicProfileActivity.class);
-                intent.putExtra("uid", uid);
-                startActivity(intent);
             }
         });
 
@@ -258,22 +256,57 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
 
 
     public void update(View view) {
-        reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
-
-        reference.child("meno").setValue(menoProfil.getText().toString());
         meno = menoProfil.getText().toString();
-
-        reference.child("priezvisko").setValue(priezviskoProfil.getText().toString());
+        int menoLength = meno.length();
         priezvisko = priezviskoProfil.getText().toString();
-
-        reference.child("telefon").setValue(telefonProfil.getText().toString());
+        int priezviskoLength = priezvisko.length();
         telefon = telefonProfil.getText().toString();
+        int telefonLength = telefon.length();
 
-        if(fotka){
-        ulozFotkuStorage();
+        if (TextUtils.isEmpty(meno) && TextUtils.isEmpty(priezvisko) && TextUtils.isEmpty(telefon)){
+            Toast.makeText(this, "Vyššie uvedené polia nesmú byť prázdne.", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(meno)){
+            Toast.makeText(this, "Zadajte svoje meno!", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(priezvisko)){
+            Toast.makeText(this, "Zadajte svoje priezvisko!", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(telefon)){
+            Toast.makeText(this, "Zadajte svoje telefónne číslo!", Toast.LENGTH_SHORT).show();
+        }
+        else if (menoLength > 25){
+            Toast.makeText(this, "Meno nesmie mať viac ako 25 znakov.", Toast.LENGTH_SHORT).show();
+        }
+        else if (priezviskoLength > 25){
+            Toast.makeText(this, "Priezvisko nesmie mať viac ako 25 znakov.", Toast.LENGTH_SHORT).show();
+        }
+        else if (telefonLength > 10){
+            Toast.makeText(this, "Telefón nesmie mať viac ako 10 znakov.", Toast.LENGTH_SHORT).show();
         }
 
-        Toast.makeText(this, "Úpravy boli prijaté", Toast.LENGTH_LONG).show();
+        else{
+            reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uid);
+
+            reference.child("meno").setValue(menoProfil.getText().toString());
+            meno = menoProfil.getText().toString();
+
+            reference.child("priezvisko").setValue(priezviskoProfil.getText().toString());
+            priezvisko = priezviskoProfil.getText().toString();
+
+            reference.child("telefon").setValue(telefonProfil.getText().toString());
+            telefon = telefonProfil.getText().toString();
+
+            if (fotka) {
+                ulozFotkuStorage();
+            }
+
+            Toast.makeText(this, "Úpravy boli prijaté", Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(EditProfileActivity.this, PublicProfileActivity.class);
+            intent.putExtra("uid", uid);
+            startActivity(intent);
+        }
 
     }
 
