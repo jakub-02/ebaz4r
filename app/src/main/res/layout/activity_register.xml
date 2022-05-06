@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,22 +7,19 @@
     android:background="@color/white"
     tools:context=".RegisterActivity">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/app_logo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/app_logo"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/logo" />
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="25dp"
+        android:src="@drawable/logo" />
 
         <LinearLayout
             android:id="@+id/menoPriezviskoBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/app_logo"
+            android:layout_above="@id/mailBox"
             android:weightSum="2">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -31,19 +27,20 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:hint="Meno"
-                android:layout_below="@+id/app_logo"
-                app:startIconDrawable="@drawable/ic_osoba">
+                app:startIconDrawable="@drawable/ic_osoba"
+                app:counterEnabled="true"
+                app:counterMaxLength="25">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/meno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,19 +49,20 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
+                android:layout_weight="1"
                 android:hint="Priezvisko"
-                android:layout_below="@id/menoBox"
+                app:counterEnabled="true"
+                app:counterMaxLength="25"
                 app:startIconDrawable="@drawable/ic_osoba">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/priezvisko"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,17 +73,17 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_above="@+id/telefonBox"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
             android:hint="Email"
-            android:layout_below="@+id/menoPriezviskoBox"
             app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,17 +92,19 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_above="@id/hesloBox"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
             android:hint="Telefónne číslo"
-            android:layout_below="@id/mailBox"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
             app:startIconDrawable="@drawable/ic_phone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/telefon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"/>
+                android:inputType="phone" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,19 +113,19 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_above="@id/hesloBox2"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
             android:hint="Heslo"
-            android:layout_below="@id/telefonBox"
-            app:startIconDrawable="@drawable/ic_lock"
-            app:endIconMode="password_toggle">
+            app:endIconMode="password_toggle"
+            app:startIconDrawable="@drawable/ic_lock">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/heslo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:minEms="8"/>
+                android:minEms="8" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,19 +134,19 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_above="@id/register"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
             android:hint="Zopakuj heslo"
-            android:layout_below="@id/hesloBox"
-            app:startIconDrawable="@drawable/ic_lock"
-            app:endIconMode="password_toggle">
+            app:endIconMode="password_toggle"
+            app:startIconDrawable="@drawable/ic_lock">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/heslo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:minEms="8"/>
+                android:minEms="8" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,16 +154,11 @@
             android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/hesloBox2"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/buttons"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="10dp"
             android:padding="10dp"
             android:text="Registrovať sa"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="17sp" />
     </RelativeLayout>
-</ScrollView>

@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="25dp"
         android:src="@drawable/logo" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -60,7 +61,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/login"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
         android:text="Zapamätať prihlásenie"
         android:textColor="@color/colorPrimary"
         app:buttonTint="@color/colorPrimary">
@@ -68,18 +68,14 @@
     </CheckBox>
 
     <Button
+        android:layout_alignParentBottom="true"
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/buttons"
+        android:layout_marginHorizontal="15dp"
         android:padding="10dp"
         android:text="Prihlásiť sa"
-        android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="17sp" />
 </RelativeLayout>
