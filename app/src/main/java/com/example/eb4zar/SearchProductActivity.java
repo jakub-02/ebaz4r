@@ -88,7 +88,7 @@ public class SearchProductActivity extends AppCompatActivity implements Navigati
             }
 
             case (R.id.nav_profile): {
-                Intent intent = new Intent(SearchProductActivity.this, EditProfileActivity.class);
+                Intent intent = new Intent(SearchProductActivity.this, PublicProfileActivity.class);
                 startActivity(intent);
                 break;
             }
@@ -99,15 +99,15 @@ public class SearchProductActivity extends AppCompatActivity implements Navigati
                 break;
             }
 
-            case (R.id.nav_logout): {
-                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(SearchProductActivity.this, MainActivity.class);
+            case (R.id.nav_myRatings): {
+                Intent intent = new Intent(SearchProductActivity.this, UserRatingsActivity.class);
                 startActivity(intent);
-                Toast.makeText(SearchProductActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
+            case (R.id.nav_editProfile): {
+                Intent intent = new Intent(SearchProductActivity.this, EditProfileActivity.class);
+                startActivity(intent);
                 break;
             }
         }

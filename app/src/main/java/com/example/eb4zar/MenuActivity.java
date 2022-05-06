@@ -2,12 +2,14 @@ package com.example.eb4zar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,8 @@ import com.example.eb4zar.model.Kategoria;
 import com.example.eb4zar.model.ProductDetail;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -116,6 +121,39 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         recycler_kategorie.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
 
         nacitajDataHeader();
+
+        ImageButton logoutButton = headerView.findViewById(R.id.logoutButton);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.setMessage("Naozaj sa chcete odhlásiť?")
+                        .setCancelable(false)
+                        .setPositiveButton("Áno", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("remember", "false");
+                                editor.apply();
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(MenuActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.setTitle("Odhlásenie");
+                alert.show();
+            }
+        });
+
     }
 
     @Override
@@ -208,15 +246,16 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 break;
             }
 
-            case (R.id.nav_logout): {
-                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+            case (R.id.nav_myRatings): {
+                Intent intent = new Intent(MenuActivity.this, UserRatingsActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
-                Toast.makeText(MenuActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
+            case (R.id.nav_editProfile): {
+                Intent intent = new Intent(MenuActivity.this, EditProfileActivity.class);
+                startActivity(intent);
                 break;
             }
     }

@@ -69,8 +69,6 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
         pridaj = findViewById(R.id.pridaj);
         recyclerView = findViewById(R.id.recycler);
 
-        uidProfil = getIntent().getExtras().get("uidProfil").toString();
-
         reference = FirebaseDatabase.getInstance().getReference().child("hodnotenia");
 
         setSupportActionBar(toolbar);
@@ -96,6 +94,8 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
             uid = user.getUid();
         }
 
+        uidProfil = getIntent().getExtras().get("uid").toString();
+
         if (uidProfil.equals(uid)){
             pridaj.setVisibility(View.INVISIBLE);
         }
@@ -104,7 +104,7 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(UserRatingsActivity.this, RateUserActivity.class);
-                i.putExtra("uidProfil", uidProfil);
+                i.putExtra("uid", uidProfil);
                 startActivity(i);
             }
         });
@@ -164,15 +164,16 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
                 break;
             }
 
-            case (R.id.nav_logout): {
-                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(UserRatingsActivity.this, MainActivity.class);
+            case (R.id.nav_myRatings): {
+                Intent intent = new Intent(UserRatingsActivity.this, UserRatingsActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
-                Toast.makeText(UserRatingsActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
+            case (R.id.nav_editProfile): {
+                Intent intent = new Intent(UserRatingsActivity.this, EditProfileActivity.class);
+                startActivity(intent);
                 break;
             }
         }

@@ -209,24 +209,27 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
             }
 
             case (R.id.nav_profile): {
+                Intent intent = new Intent(EditProfileActivity.this, PublicProfileActivity.class);
+                intent.putExtra("uid", uid);
+                startActivity(intent);
                 break;
             }
 
             case (R.id.nav_myProducts):{
                 Intent intent = new Intent(EditProfileActivity.this, MyProductsActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }
 
-            case (R.id.nav_logout): {
-                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+            case (R.id.nav_myRatings): {
+                Intent intent = new Intent(EditProfileActivity.this, UserRatingsActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
-                Toast.makeText(EditProfileActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
+            case (R.id.nav_editProfile): {
                 break;
             }
         }

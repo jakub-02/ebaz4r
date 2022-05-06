@@ -92,7 +92,7 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
             uid = user.getUid();
         }
 
-        uidProfil = getIntent().getExtras().get("uidProfil").toString();
+        uidProfil = getIntent().getExtras().get("uid").toString();
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -160,15 +160,16 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
                 break;
             }
 
-            case (R.id.nav_logout): {
-                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(RateUserActivity.this, MainActivity.class);
+            case (R.id.nav_myRatings): {
+                Intent intent = new Intent(RateUserActivity.this, UserRatingsActivity.class);
+                intent.putExtra("uid", uid);
                 startActivity(intent);
-                Toast.makeText(RateUserActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
+            case (R.id.nav_editProfile): {
+                Intent intent = new Intent(RateUserActivity.this, EditProfileActivity.class);
+                startActivity(intent);
                 break;
             }
         }
@@ -202,7 +203,7 @@ public class RateUserActivity extends AppCompatActivity implements NavigationVie
 
             Toast.makeText(this, "Hodnotenie bolo pridané.", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(RateUserActivity.this, UserRatingsActivity.class);
-            intent.putExtra("uidProfil", uidProfil);
+            intent.putExtra("uid", uidProfil);
             startActivity(intent);
         }
     }

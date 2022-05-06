@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
@@ -22,10 +24,14 @@
             android:icon="@drawable/ic_add"
             android:title="Pridať inzerát" />
 
+    </group>
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_osoba"
-            android:title="Profil" />
+            android:title="Môj profil" />
 
         <item
             android:id="@+id/nav_myProducts"
@@ -33,9 +39,13 @@
             android:title="Moje inzeráty" />
 
         <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_logout"
-            android:title="Odhlásiť sa" />
+            android:id="@+id/nav_myRatings"
+            android:icon="@drawable/ic_hodnotenie"
+            android:title="Moje hodnotenia" />
+        <item
+            android:id="@+id/nav_editProfile"
+            android:icon="@drawable/ic_settings"
+            android:title="Upraviť profil" />
     </group>
 
 
