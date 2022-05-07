@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,6 +103,38 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
         builder = new AlertDialog.Builder(this);
 
         nacitajDataHeader();
+
+        ImageButton logoutButton = headerView.findViewById(R.id.logoutButton);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.setMessage("Naozaj sa chcete odhlásiť?")
+                        .setCancelable(false)
+                        .setPositiveButton("Áno", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("remember", "false");
+                                editor.apply();
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(MyProductsActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(MyProductsActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.setTitle("Odhlásenie");
+                alert.show();
+            }
+        });
     }
 
     @Override

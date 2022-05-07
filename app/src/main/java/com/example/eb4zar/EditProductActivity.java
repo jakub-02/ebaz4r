@@ -2,11 +2,13 @@ package com.example.eb4zar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -19,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -141,6 +144,38 @@ public class EditProductActivity extends AppCompatActivity implements Navigation
         });
 
         nacitajDataHeader();
+
+        ImageButton logoutButton = headerView.findViewById(R.id.logoutButton);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.setMessage("Naozaj sa chcete odhlásiť?")
+                        .setCancelable(false)
+                        .setPositiveButton("Áno", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("remember", "false");
+                                editor.apply();
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(EditProductActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(EditProductActivity.this, "Odhlásenie bolo úspešné.", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.setTitle("Odhlásenie");
+                alert.show();
+            }
+        });
     }
 
     private void OtvorGaleriu() {
