@@ -184,6 +184,7 @@ public class MyProductsActivity extends AppCompatActivity implements NavigationV
                                                                                 updateInzeraty();
                                                                                 Toast.makeText(MyProductsActivity.this, "Inzerát bol vymazaný",
                                                                                         Toast.LENGTH_SHORT).show();
+                                                                                notifyDataSetChanged();
                                                                             }
                                                                         }
                                                                     });

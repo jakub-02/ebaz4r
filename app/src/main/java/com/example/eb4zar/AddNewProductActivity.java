@@ -1,7 +1,6 @@
 package com.example.eb4zar;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,10 +21,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +57,8 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
     Toolbar toolbar;
     Menu menu;
 
-    ImageView obrazokProduktu;
+    ImageView obrazokProduktu, edit_ic;
+    View edit_bg;
 
     TextInputEditText nazovText, popisText, cenaText;
     AutoCompleteTextView kategoria;
@@ -77,7 +75,9 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
 
     Uri ImageUri;
 
-    int inzeraty;
+    int inzeraty, poradie;
+
+    Boolean fotoChecker = false;
 
     private static final int GalleryPick = 1;
 
@@ -94,6 +94,8 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         popisText = findViewById(R.id.popisText);
         cenaText = findViewById(R.id.cenaText);
         kategoria = findViewById(R.id.kategoria);
+        edit_bg = findViewById(R.id.edit_bg);
+        edit_ic = findViewById(R.id.edit_ic);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Pridajte nový inzerát");
@@ -203,6 +205,11 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         {
             ImageUri = data.getData();
             obrazokProduktu.setImageURI(ImageUri);
+
+            edit_bg.setVisibility(View.VISIBLE);
+            edit_ic.setVisibility(View.VISIBLE);
+
+            fotoChecker = true;
         }
     }
 
@@ -228,6 +235,9 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         else if (TextUtils.isEmpty(cena)){
             Toast.makeText(this, "Zadajte cenu inzerátu!", Toast.LENGTH_SHORT).show();
         }
+        else if (TextUtils.isEmpty(kategoriaText)){
+            Toast.makeText(this, "Vyberte si kategóriu!", Toast.LENGTH_SHORT).show();
+        }
         else if (nazovLength > 25){
             Toast.makeText(this, "Názov nesmie mať viac ako 25 znakov.", Toast.LENGTH_SHORT).show();
         }
@@ -236,6 +246,9 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         }
         else if (cenaLength > 10){
             Toast.makeText(this, "Cena nesmie mať viac ako 10 znakov.", Toast.LENGTH_SHORT).show();
+        }
+        else if (fotoChecker == false){
+            Toast.makeText(this, "Pridajte fotografiu inzerátu!", Toast.LENGTH_SHORT).show();
         }
 
         else{
@@ -253,6 +266,22 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         saveCurrentTime = currentTime.format(calendar.getTime());
 
         productRandomKey = saveCurrentTime + "" +saveCurrentDate;
+
+        DatabaseReference poradieReference = FirebaseDatabase.getInstance().getReference().child("poradie").child("poradie");
+
+        poradieReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                poradie = Integer.parseInt(dataSnapshot.getValue().toString()) + 1;
+                poradieReference.setValue(poradie);
+                reference = FirebaseDatabase.getInstance().getReference().child("produkty").child(uid + productRandomKey);
+                reference.child("poradie").setValue(poradie);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         reference = FirebaseDatabase.getInstance().getReference().child("produkty").child(uid + productRandomKey);
 

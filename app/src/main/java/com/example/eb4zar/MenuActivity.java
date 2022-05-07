@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.solver.state.State;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -12,6 +13,8 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Path;
+import android.icu.text.RelativeDateTimeFormatter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +45,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -112,8 +117,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         kategoriaList.add(new Kategoria("Ostatné", R.drawable.suggestion));
 
         recyclerView = findViewById(R.id.recycler_menu);
-        recyclerView.setLayoutManager(
-                new LinearLayoutManager(this));
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(mLayoutManager);
 
         recycler_kategorie = findViewById(R.id.recycler_kategorie);
         KategoriaAdapter adapter = new KategoriaAdapter(kategoriaList);
@@ -161,9 +168,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     {
         super.onStart();
 
+        Query query = ProductsRef.orderByChild("poradie");
+
         FirebaseRecyclerOptions<ProductDetail> options =
                 new FirebaseRecyclerOptions.Builder<ProductDetail>()
-                        .setQuery(ProductsRef, ProductDetail.class)
+                        .setQuery(query, ProductDetail.class)
                         .build();
 
         FirebaseRecyclerAdapter<ProductDetail, ProductViewHolder> adapter =

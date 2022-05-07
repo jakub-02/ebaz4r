@@ -1,7 +1,8 @@
 package com.example.eb4zar.model;
 
 public class ProductDetail {
-    String nazov, popis, cena, uzivatel, fotka, kategoria, datumpridania, caspridania;
+    private String nazov, popis, cena, uzivatel, fotka, kategoria, datumpridania, caspridania;
+    private int poradie;
 
     public ProductDetail(){
 
@@ -69,5 +70,13 @@ public class ProductDetail {
 
     public void setCaspridania(String caspridania) {
         this.caspridania = caspridania;
+    }
+
+    public int getPoradie() {
+        return poradie;
+    }
+
+    public void setPoradie(int poradie) {
+        this.poradie = poradie;
     }
 }
