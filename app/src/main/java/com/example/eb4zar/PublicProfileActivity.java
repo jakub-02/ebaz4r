@@ -102,6 +102,9 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
         if (!uidProfil.equals(uid)){
             settings.setVisibility(View.INVISIBLE);
         }
+        else {
+            getSupportActionBar().setTitle("Môj profil");
+        }
 
         reference = FirebaseDatabase.getInstance().getReference().child("uzivatelia").child(uidProfil);
         fotkyReference = FirebaseStorage.getInstance().getReference().child("profiloveObrazky");
@@ -152,8 +155,16 @@ public class PublicProfileActivity extends AppCompatActivity implements Navigati
         sellerProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PublicProfileActivity.this, MyProductsActivity.class);
-                startActivity(intent);
+                if (!uidProfil.equals(uid)){
+                    Intent intent = new Intent(PublicProfileActivity.this, UserProductsActivity.class);
+                    intent.putExtra("uid", uidProfil);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(PublicProfileActivity.this, MyProductsActivity.class);
+                    intent.putExtra("uid", uidProfil);
+                    startActivity(intent);
+                }
             }
         });
 

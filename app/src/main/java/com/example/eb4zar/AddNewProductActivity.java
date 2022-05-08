@@ -98,7 +98,7 @@ public class AddNewProductActivity extends AppCompatActivity implements Navigati
         edit_ic = findViewById(R.id.edit_ic);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Pridajte nový inzerát");
+        getSupportActionBar().setTitle("Vytváranie inzerátu");
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,

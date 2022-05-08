@@ -110,7 +110,7 @@ public class EditProductActivity extends AppCompatActivity implements Navigation
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
-
+        getSupportActionBar().setTitle("Úprava inzerátu");
         headerView = navigationView.getHeaderView(0);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

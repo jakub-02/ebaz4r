@@ -86,7 +86,7 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
         save = findViewById(R.id.save);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Upravte si svoj profil");
+        getSupportActionBar().setTitle("Úprava profilu");
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle=new
@@ -251,7 +251,6 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
 
             case (R.id.nav_myProducts):{
                 Intent intent = new Intent(EditProfileActivity.this, MyProductsActivity.class);
-                intent.putExtra("uid", uid);
                 startActivity(intent);
                 break;
             }

@@ -75,21 +75,16 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
         reference = FirebaseDatabase.getInstance().getReference().child("hodnotenia");
 
         setSupportActionBar(toolbar);
-
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new
                 ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
         navigationView.setNavigationItemSelectedListener(this);
-
         menu = navigationView.getMenu();
-
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
-
         headerView = navigationView.getHeaderView(0);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -101,6 +96,7 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
 
         if (uidProfil.equals(uid)){
             pridaj.setVisibility(View.INVISIBLE);
+            getSupportActionBar().setTitle("Moje hodnotenia");
         }
 
         pridaj.setOnClickListener(new View.OnClickListener() {
@@ -118,9 +114,7 @@ public class UserRatingsActivity extends AppCompatActivity implements Navigation
         nacitajDataHeader();
 
         ImageButton logoutButton = headerView.findViewById(R.id.logoutButton);
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
