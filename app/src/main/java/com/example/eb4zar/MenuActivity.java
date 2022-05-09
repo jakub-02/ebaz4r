@@ -160,7 +160,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 alert.show();
             }
         });
-
     }
 
     @Override

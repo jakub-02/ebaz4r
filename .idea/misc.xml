@@ -14,6 +14,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/drawable/image_shadow.xml" value="0.1615" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/drawable/image_shadow_circle.xml" value="0.1615" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/drawable/layout_bg.xml" value="0.163" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/drawable/searchview_bg.xml" value="0.1615" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/drawable/splash.xml" value="0.163" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_add_new_product.xml" value="0.176" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_categories.xml" value="0.2553846153846154" />
@@ -22,14 +23,14 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_edit_profile.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_login.xml" value="0.152" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_main.xml" value="0.16" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_menu.xml" value="0.152" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_my_products.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_product_detail.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_public_profile.xml" value="0.176" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_rate_user.xml" value="0.2" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_register.xml" value="0.2" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_search_product.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_search_product.xml" value="0.2" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_selected_category.xml" value="0.22735507246376813" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_user_products.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/activity_user_ratings.xml" value="0.2553846153846154" />
@@ -39,6 +40,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/my_product_layout.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/product_items_layout.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/row_review.xml" value="0.259375" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/searchview_bg.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/settings_activity.xml" value="0.1574074074074074" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/spinner_item.xml" value="0.12613981762917933" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ebaz4r/app/src/main/res/layout/toolbar.xml" value="0.12613981762917933" />

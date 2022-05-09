@@ -20,13 +20,12 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorSecondary"
-        tools:context=".EditProfileActivity">
+        tools:context=".SearchProductActivity"
+        android:background="@color/colorSecondary">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorSecondary">
+            android:layout_height="match_parent">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -40,23 +39,52 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:titleTextColor="@color/white" />
 
-            <EditText
-                android:id="@+id/searchBar"
+            <LinearLayout
+                android:id="@+id/searchLayout"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_margin="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                android:background="@drawable/input"
-                android:textSize="18sp"
-                android:padding="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:hint="Zadajte názov inzerátu"
-                android:drawableEnd="@drawable/ic_search"
-                android:drawableRight="@drawable/ic_search" />
+                android:layout_height="75dp"
+                android:orientation="horizontal"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="20dp"
+                android:weightSum="7"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/searchViewLayout"
+                    style="@style/OutlinedRoundedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:hint="Zadajte názov inzerátu">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/searchView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/button"
+                    android:background="@color/colorPrimary"
+                    app:icon="@drawable/ic_search"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                app:layout_constraintTop_toBottomOf="@+id/searchLayout"
+                android:layout_marginTop="10dp"
+                android:id="@+id/recycler_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
