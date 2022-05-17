@@ -1,5 +1,6 @@
 package com.example.eb4zar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,12 +10,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.eb4zar.model.UserDetail;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -26,15 +28,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import io.paperdb.Paper;
-
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginTlacidlo;
     private TextInputEditText mailEdit, hesloEdit;
 
-    private String parentDbName = "Users";
     private CheckBox rememberBox;
+    private TextView forgotPassword;
 
     private String mail;
     private String heslo;
@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         hesloEdit = findViewById(R.id.heslo);
 
         rememberBox = findViewById(R.id.rememberBox);
+        forgotPassword = findViewById(R.id.forgotPassword);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -106,6 +107,52 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+                final EditText emailText = new EditText(LoginActivity.this);
+                alert.setMessage("Zadajte váš email");
+
+                alert.setTitle("Zabudli ste heslo?");
+
+                alert.setView(emailText);
+
+                alert.setPositiveButton("Resetovať", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String email = emailText.getText().toString();
+
+                        if (TextUtils.isEmpty(email)) {
+                            Toast.makeText(getApplication(), "Zadajte svoju emailovú adresu!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        mFirebaseAuth.sendPasswordResetEmail(email)
+
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(LoginActivity.this, "Inštrukcie na resetovanie hesla Vám boli zaslané na email.", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(LoginActivity.this, "Reset hesla zlyhal!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                    }
+                });
+
+                alert.setNegativeButton("Zrušiť", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                });
+
+                alert.show();
+            }
+        });
     }
 
     private void prihlasenie(FirebaseUser mFirebaseUser) {
@@ -113,8 +160,6 @@ public class LoginActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        UserDetail userDetail = snapshot.getValue(UserDetail.class);
-                        String meno = userDetail.getMeno() + " " + userDetail.getPriezvisko();
                         Intent i = new Intent(getApplicationContext(), MenuActivity.class);
                         startActivity(i);
                     }
